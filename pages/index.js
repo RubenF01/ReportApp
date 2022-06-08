@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
+import NavBar from "../components/nav/NavBar";
 
 export default function Home() {
   return (
@@ -33,11 +34,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute flex px-5 pt-3">
-          <div>
-            <h1 className="text-white">ReportApp</h1>
-          </div>
-        </div>
+        <NavBar />
       </main>
     </div>
   );
