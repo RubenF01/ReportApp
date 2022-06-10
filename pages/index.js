@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex font-poppins min-h-screen relative">
+      <main className="flex font-poppins min-h-screen">
         <div className="w-1/2 relative">
           <img
             className="h-full object-cover"

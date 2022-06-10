@@ -28,7 +28,6 @@ export default async (req, res) => {
             expiresIn: "7d",
           }
         );
-
         res.status(201).json({ message: "Login exitoso", user, token });
       }
     }

@@ -1,21 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
+import Head from "next/head";
 import FormRegistro from "../components/form/FormRegistro";
 
 const Registro = () => {
   return (
-    <main className="flex font-poppins min-h-screen relative">
-      <div className="w-full relative">
-        <img
-          className="h-screen w-full object-cover"
-          src="/landingbackground.png"
-          alt="Landing Background"
+    <div>
+      <Head>
+        <title>Registro</title>
+        <meta
+          name="description"
+          content="Created by Ruben Frias & Melvin Guerra"
         />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <div className="bg-black/70 absolute inset-0 flex justify-center items-center">
-          <FormRegistro />
+      <main className="flex font-poppins min-h-screen">
+        <div className="w-full relative">
+          <img
+            className="h-screen w-full object-cover"
+            src="/landingbackground.png"
+            alt="Landing Background"
+          />
+
+          <div className="bg-black/70 absolute inset-0 flex justify-center items-center">
+            <FormRegistro />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 

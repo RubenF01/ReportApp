@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import cookie from "js-cookie";
+import { useRouter } from "next/router";
 
 const FormAcceder = () => {
   const {
@@ -9,29 +10,36 @@ const FormAcceder = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const router = useRouter();
 
   const onSubmit = async (formData) => {
-    const { correo, password } = formData;
+    try {
+      const { correo, password } = formData;
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const { data } = await axios.post(
-      "/api/acceder",
-      {
-        correo,
-        password,
-      },
-      config
-    );
+      const { data } = await axios.post(
+        "/api/acceder",
+        {
+          correo,
+          password,
+        },
+        config
+      );
 
-    cookie.set("token", data.token);
-    cookie.set("user", data.user);
+      cookie.set("token", data?.token);
+      cookie.set("user", JSON.stringify(data?.user));
 
-    reset();
+      reset();
+
+      router.push("/userDashboard");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
