@@ -18,11 +18,23 @@ const NavBar = () => {
     router.push("/");
   };
 
+  const logoColorSelector = () => {
+    if (
+      router.pathname === "/" ||
+      router.pathname === "/acceder" ||
+      router.pathname === "/registro"
+    ) {
+      return "text-white";
+    } else {
+      return "text-black";
+    }
+  };
+
   return (
-    <div className=" absolute flex px-5 pt-3 z-50 font-poppins justify-between w-full">
+    <div className="absolute flex px-5 pt-3 z-50 font-poppins justify-between w-full">
       <div>
         <Link href="/">
-          <a className="text-white">ReportApp</a>
+          <a className={`${logoColorSelector()}`}>ReportApp</a>
         </Link>
       </div>
 
