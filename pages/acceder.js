@@ -1,4 +1,4 @@
-import NavBar from "../components/nav/NavBar";
+/* eslint-disable @next/next/no-img-element */
 import FormAcceder from "../components/form/FormAcceder";
 
 const Acceder = () => {
@@ -15,8 +15,6 @@ const Acceder = () => {
           <FormAcceder />
         </div>
       </div>
-
-      <NavBar />
     </main>
   );
 };

@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
-import NavBar from "../components/nav/NavBar";
 
 export default function Home() {
   return (
@@ -33,8 +33,6 @@ export default function Home() {
             <ButtonLink title="Registro" link="/registro" />
           </div>
         </div>
-
-        <NavBar />
       </main>
     </div>
   );

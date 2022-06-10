@@ -1,12 +1,38 @@
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const FormRegistro = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (formData) => {
+    const { nombre, apellido, correo, cedula, password } = formData;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post(
+      "/api/registro",
+      {
+        nombre,
+        apellido,
+        correo,
+        cedula,
+        password,
+      },
+      config
+    );
+
+    reset();
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

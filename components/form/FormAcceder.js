@@ -1,12 +1,39 @@
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import cookie from "js-cookie";
 
 const FormAcceder = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = async (formData) => {
+    const { correo, password } = formData;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.post(
+      "/api/acceder",
+      {
+        correo,
+        password,
+      },
+      config
+    );
+
+    cookie.set("token", data.token);
+    cookie.set("user", data.user);
+
+    reset();
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -22,6 +49,7 @@ const FormAcceder = () => {
 
       <label className="font-bold">Contraseña</label>
       <input
+        type="password"
         className="bg-slate-300 rounded py-2 px-3"
         {...register("password", { required: true })}
       />

@@ -1,4 +1,4 @@
-import NavBar from "../components/nav/NavBar";
+/* eslint-disable @next/next/no-img-element */
 import FormRegistro from "../components/form/FormRegistro";
 
 const Registro = () => {
@@ -15,8 +15,6 @@ const Registro = () => {
           <FormRegistro />
         </div>
       </div>
-
-      <NavBar />
     </main>
   );
 };
