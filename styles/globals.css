@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+@import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+@import "leaflet-defaulticon-compatibility";
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: red;
+  color: #fff;
+}
+
+.container {
+  height: 600px;
+  width: 100%;
+}
+
+.popup {
+  color: red;
+}
+
+.marker {
+  background-color: green;
+}
+
+.leaflet-div-icon {
+  text-align: center;
+}
