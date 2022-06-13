@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { parseCookies } from "nookies";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
+import GlobalContext from "../../context/GlobalContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+  const value = useContext(GlobalContext);
   const router = useRouter();
-  const cookies = parseCookies();
+  let { loggedUser } = value;
 
-  const user = cookies?.user ? JSON.parse(cookies.user) : "";
-
-  console.log(user);
+  console.log(loggedUser);
 
   const logoutHandler = async () => {
     cookie.remove("token");
@@ -38,9 +38,9 @@ const NavBar = () => {
         </Link>
       </div>
 
-      {user && (
+      {loggedUser && (
         <div className="flex space-x-5">
-          <h1 className="text-black">Hola, {user.nombre}</h1>
+          <h1 className="text-black">Hola, {loggedUser.nombre}</h1>
           <button type="button" onClick={logoutHandler}>
             Cerrar Sesión
           </button>

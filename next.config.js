@@ -10,6 +10,12 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    MONGO_URI: process.env.MONGO_URI,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    IMG_UPLOAD_LINK: process.env.IMG_UPLOAD_LINK,
+  },
 };
 
 module.exports = nextConfig;

@@ -1,12 +1,13 @@
 import Triangle from "../public/triangle.svg";
 import Clipboard from "../public/clipboard.svg";
-import { parseCookies } from "nookies";
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 
 const UserDashboard = () => {
-  const cookies = parseCookies();
-  const user = cookies?.user ? JSON.parse(cookies.user) : "";
+  const value = useContext(GlobalContext);
+  const { loggedUser } = value;
 
-  if (user) {
+  if (loggedUser) {
     return (
       <div className="text-2xl font-bold flex justify-center space-x-48 text-center">
         <figure>

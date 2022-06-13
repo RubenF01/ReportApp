@@ -1,7 +1,9 @@
+import FormInfo from "../../components/form/FormInfo";
+
 const AddInformation = () => {
   return (
     <div>
-      <div></div>
+      <FormInfo />
     </div>
   );
 };
