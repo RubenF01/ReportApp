@@ -45,9 +45,7 @@ const ReportMap = ({ center, draggable, onDragMarker, location }) => {
         draggable={draggable}
         eventHandlers={dragHandlers}
         ref={markerRef}
-      >
-        <Popup className="popup">{"my title"}</Popup>
-      </Marker>
+      ></Marker>
     </MapContainer>
   );
 };

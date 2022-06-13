@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import axios from "axios";
 
-const FormInfo = () => {
-  const [imageSrc, setImageSrc] = useState();
-  const [uploadData, setUploadData] = useState();
+const FormInfo = ({ loggedUser, lng, lat }) => {
+  const { cedula } = loggedUser;
+  const defaultStatus = false;
 
   const {
     register,
@@ -17,6 +17,7 @@ const FormInfo = () => {
       const { referencias, imagenes } = formData;
       let imageLinks = [];
 
+      const date = Date.now();
       const imageData = new FormData();
 
       for (const imagen of imagenes) {
@@ -32,6 +33,28 @@ const FormInfo = () => {
 
         imageLinks.push(data.secure_url);
       }
+
+      console.log(imageLinks);
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/reporte",
+        {
+          cedula,
+          referencias,
+          imageLinks,
+          lng,
+          lat,
+          defaultStatus,
+          date,
+        },
+        config
+      );
 
       // reset();
     } catch (error) {

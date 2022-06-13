@@ -2,6 +2,7 @@ import Triangle from "../public/triangle.svg";
 import Clipboard from "../public/clipboard.svg";
 import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
+import Link from "next/link";
 
 const UserDashboard = () => {
   const value = useContext(GlobalContext);
@@ -11,12 +12,20 @@ const UserDashboard = () => {
     return (
       <div className="text-2xl font-bold flex justify-center space-x-48 text-center">
         <figure>
-          <Triangle />
-          <figcaption>CREAR REPORTE</figcaption>
+          <Link href="/create-report/selectLocation">
+            <a>
+              <Triangle />
+              <figcaption>CREAR REPORTE</figcaption>
+            </a>
+          </Link>
         </figure>
         <figure>
-          <Clipboard />
-          <figcaption>MIS REPORTES</figcaption>
+          <Link href="/misReportes">
+            <a>
+              <Clipboard />
+              <figcaption>MIS REPORTES</figcaption>
+            </a>
+          </Link>
         </figure>
       </div>
     );
