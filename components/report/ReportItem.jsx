@@ -1,7 +1,10 @@
-const ReportItem = () => {
+const ReportItem = ({
+  report: { lat, lng, referencias, status, creationDate, imagenes },
+}) => {
+  const cover = imagenes[0];
   return (
     <div>
-      <div>hola</div>
+      <img src={cover} alt={referencias} className="w-24 h-24" />
     </div>
   );
 };

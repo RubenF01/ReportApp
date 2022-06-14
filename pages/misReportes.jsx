@@ -2,12 +2,10 @@ import GlobalContext from "../context/GlobalContext";
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import ReportItem from "../components/report/ReportItem";
-import cookie from "js-cookie";
 
 const MisReportes = () => {
   const value = useContext(GlobalContext);
   const { loggedUser, reports, setReports } = value;
-  console.log(loggedUser);
   console.log(reports);
 
   const cedula = loggedUser?.cedula;
@@ -19,8 +17,6 @@ const MisReportes = () => {
           cedula,
         },
       });
-
-      cookie.set("reports", JSON.stringify(response.data.reports));
 
       setReports(response.data.reports);
     } catch (error) {
@@ -34,11 +30,16 @@ const MisReportes = () => {
 
   if (loggedUser) {
     return (
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="h-56 bg-slate-500">
-          {/* {reports?.map((report, index) => (
-            <ReportItem key={index} />
-          ))} */}
+      <div className="h-screen w-full flex flex-col justify-center items-center space-y-4">
+        <div className="w-[95%]">
+          <h1 className="font-poppins font-bold">Mis reportes</h1>
+        </div>
+        <div className="h-[70%] w-full flex justify-center items-center">
+          <div className="bg-slate-500 h-full w-[95%]">
+            {reports.map((report, index) => (
+              <ReportItem key={index} report={report} />
+            ))}
+          </div>
         </div>
       </div>
     );
