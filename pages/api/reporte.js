@@ -22,6 +22,13 @@ export default async (req, res) => {
 
       res.status(200).json({ message: "Reporte creado" });
     }
+
+    if (req.method === "GET") {
+      const { cedula } = req.query;
+      const reports = await Report.find({ createdBy: cedula });
+
+      res.status(200).json({ reports });
+    }
   } catch (error) {
     console.error(error);
   }

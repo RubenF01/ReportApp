@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [loggedUser, setLoggedUser] = useState(null);
-  const [location, setLocation] = useState({ lng: 0, lat: 0 }); // default null
+  const [location, setLocation] = useState({ lng: 0, lat: 0 });
+  const [reports, setReports] = useState({});
   const cookies = parseCookies();
+  console.log(cookies.reports);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -25,7 +27,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   return (
     <SessionProvider session={session}>
-      <GlobalContext.Provider value={{ loggedUser, location, setLocation }}>
+      <GlobalContext.Provider
+        value={{ loggedUser, location, setLocation, reports, setReports }}
+      >
         <Layout>
           <Component {...pageProps} />
         </Layout>

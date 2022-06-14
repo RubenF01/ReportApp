@@ -56,7 +56,7 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
         config
       );
 
-      // reset();
+      reset();
     } catch (error) {
       console.error(error);
     }

@@ -9,8 +9,6 @@ const NavBar = () => {
   const router = useRouter();
   let { loggedUser } = value;
 
-  console.log(loggedUser);
-
   const logoutHandler = async () => {
     cookie.remove("token");
     cookie.remove("user");
