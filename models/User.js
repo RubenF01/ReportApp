@@ -23,8 +23,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reports: {
-    type: Array,
+  isAdmin: {
+    type: Boolean,
+    required: true,
   },
 });
 

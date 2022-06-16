@@ -7,8 +7,16 @@ dbConnect();
 export default async (req, res) => {
   try {
     if (req.method === "POST") {
-      const { cedula, referencias, imageLinks, lng, lat, defaultStatus, date } =
-        req.body;
+      const {
+        cedula,
+        referencias,
+        imageLinks,
+        lng,
+        lat,
+        defaultStatus,
+        date,
+        type,
+      } = req.body;
 
       await new Report({
         createdBy: cedula,
@@ -18,6 +26,7 @@ export default async (req, res) => {
         imagenes: imageLinks,
         status: defaultStatus,
         creationDate: date,
+        type,
       }).save();
 
       res.status(200).json({ message: "Reporte creado" });

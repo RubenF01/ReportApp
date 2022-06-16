@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { boolean } = require("webidl-conversions");
 
 const ReportSchema = new mongoose.Schema({
   createdBy: {
@@ -28,6 +27,10 @@ const ReportSchema = new mongoose.Schema({
   },
   creationDate: {
     type: Number,
+    required: true,
+  },
+  type: {
+    type: String,
     required: true,
   },
 });

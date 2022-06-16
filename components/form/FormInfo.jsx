@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useState } from "react";
 
 const FormInfo = ({ loggedUser, lng, lat }) => {
+  const [type, setType] = useState("Bache");
   const { cedula } = loggedUser;
   const defaultStatus = false;
 
@@ -34,8 +36,6 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
         imageLinks.push(data.secure_url);
       }
 
-      console.log(imageLinks);
-
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -52,6 +52,7 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
           lat,
           defaultStatus,
           date,
+          type,
         },
         config
       );
@@ -65,7 +66,7 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white absolute left-0 right-0 mx-auto w-[30rem] flex flex-col rounded-2xl shadow-md space-y-3 px-10 py-5"
+      className="bg-white absolute left-0 right-0 mx-auto w-[30rem] flex flex-col rounded-2xl shadow-md space-y-3 px-10 py-5 font-poppins"
     >
       <h1 className="font-bold text-center underline text-2xl">
         Agregue Informacion
@@ -84,6 +85,16 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
         className="bg-slate-300 rounded py-2 px-3"
         {...register("imagenes", { required: true })}
       />
+
+      <label className="font-bold">Tipo</label>
+      <select onChange={(e) => setType(e.target.value)}>
+        <option value="Bache">Bache</option>
+        <option value="Cable en el suelo">Cable en el suelo</option>
+        <option value="Espacio ilegalmente ocupado">
+          Espacio ilegalmente ocupado
+        </option>
+        <option value="Otro">Otro</option>
+      </select>
 
       <div className="flex justify-center">
         <input

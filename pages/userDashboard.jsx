@@ -10,8 +10,8 @@ const UserDashboard = () => {
 
   if (loggedUser) {
     return (
-      <div className="text-2xl font-bold flex justify-center space-x-48 text-center">
-        <figure>
+      <div className="text-2xl h-screen font-bold flex justify-center items-center space-x-48 text-center">
+        <figure className="w-[550px]">
           <Link href="/create-report/selectLocation">
             <a>
               <Triangle />
@@ -19,7 +19,7 @@ const UserDashboard = () => {
             </a>
           </Link>
         </figure>
-        <figure>
+        <figure className="w-96">
           <Link href="/misReportes">
             <a>
               <Clipboard />

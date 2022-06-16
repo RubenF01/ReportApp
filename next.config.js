@@ -15,6 +15,7 @@ const nextConfig = {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     JWT_SECRET: process.env.JWT_SECRET,
     IMG_UPLOAD_LINK: process.env.IMG_UPLOAD_LINK,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
   },
 };
 

@@ -11,6 +11,7 @@ export default async (req, res) => {
       const { nombre, apellido, correo, cedula, password } = req.body;
       const user = await User.findOne({ correo });
       const userCedula = await User.findOne({ cedula });
+      const isAdmin = false;
 
       if (user || userCedula) {
         res.status(422).json({ message: "Usuario ya existe" });
@@ -24,6 +25,7 @@ export default async (req, res) => {
         correo,
         cedula,
         password: hashedPassword,
+        isAdmin,
       }).save();
 
       res.status(200).json({ message: "Registro exitoso" });
