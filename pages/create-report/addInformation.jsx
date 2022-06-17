@@ -9,7 +9,7 @@ const AddInformation = () => {
 
   if (loggedUser) {
     return (
-      <div>
+      <div className="h-screen flex items-center">
         <FormInfo loggedUser={loggedUser} lng={lng} lat={lat} />
       </div>
     );

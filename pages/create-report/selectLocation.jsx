@@ -22,7 +22,6 @@ const SelectLocation = () => {
           location={location}
           draggable={true}
           onDragMarker={(e) => {
-            console.log("e", e);
             let loc = { lat: e.lng, lng: e.lat };
             setLocation(loc);
           }}

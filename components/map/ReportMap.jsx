@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useRef, useMemo } from "react";
 
 const ReportMap = ({ center, draggable, onDragMarker, location }) => {

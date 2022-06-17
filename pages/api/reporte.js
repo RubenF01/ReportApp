@@ -38,6 +38,13 @@ export default async (req, res) => {
 
       res.status(200).json({ reports });
     }
+
+    if (req.method === "DELETE") {
+      const { id } = req.query;
+      await Report.findByIdAndDelete(id);
+
+      res.status(200).json({ message: "Reporte eliminado" });
+    }
   } catch (error) {
     console.error(error);
   }

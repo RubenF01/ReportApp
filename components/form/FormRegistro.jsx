@@ -74,10 +74,12 @@ const FormRegistro = () => {
       />
 
       <div className="flex justify-center">
-        <input
-          className="border-[1px] border-black hover:bg-black hover:text-white w-max rounded-3xl px-5 py-1 cursor-pointer"
+        <button
           type="submit"
-        />
+          className="border-[1px] border-black hover:bg-black hover:text-white w-max rounded-3xl px-5 py-1 cursor-pointer"
+        >
+          Registrarse
+        </button>
       </div>
     </form>
   );

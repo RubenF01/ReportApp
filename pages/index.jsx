@@ -22,7 +22,10 @@ export default function Home() {
             alt="Landing Background"
           />
 
-          <div className="bg-black/70 absolute inset-0"></div>
+          <div className="bg-black/70 absolute inset-0 flex flex-col items-center justify-center space-y-5">
+            <img src="/logo.png" alt="logo" />
+            <h1 className="text-6xl text-white cursor-default">ReportApp</h1>
+          </div>
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center space-y-10">
           <h1 className="font-bold text-7xl w-[30rem] text-center">

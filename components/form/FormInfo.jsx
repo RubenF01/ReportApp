@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const FormInfo = ({ loggedUser, lng, lat }) => {
   const [type, setType] = useState("Bache");
   const { cedula } = loggedUser;
   const defaultStatus = false;
+  const router = useRouter();
 
   const {
     register,
@@ -58,6 +60,8 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
       );
 
       reset();
+
+      router.push("/userDashboard");
     } catch (error) {
       console.error(error);
     }

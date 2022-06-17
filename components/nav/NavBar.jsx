@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
@@ -16,29 +17,35 @@ const NavBar = () => {
     router.push("/");
   };
 
-  const logoColorSelector = () => {
-    if (
-      router.pathname === "/" ||
-      router.pathname === "/acceder" ||
-      router.pathname === "/registro"
-    ) {
-      return "text-white";
-    } else {
-      return "text-black";
-    }
-  };
+  // const logoColorSelector = () => {
+  //   if (
+  //     router.pathname === "/" ||
+  //     router.pathname === "/acceder" ||
+  //     router.pathname === "/registro"
+  //   ) {
+  //     return "text-white";
+  //   } else {
+  //     return "text-black";
+  //   }
+  // };
 
   return (
     <div className="absolute flex px-5 pt-3 z-50 font-poppins justify-between w-full">
       <div>
-        <Link href="/">
+        {/* <Link href="/">
           <a className={`${logoColorSelector()}`}>ReportApp</a>
+        </Link> */}
+        <Link href="/">
+          <img src="/logo.png" alt="logo" className="h-10 cursor-pointer" />
         </Link>
       </div>
 
       {loggedUser && (
-        <div className="flex space-x-5">
-          <h1 className="text-black">Hola, {loggedUser.nombre}</h1>
+        <div className="flex space-x-5 items-center">
+          <h1 className="text-black">Hola, {loggedUser.nombre} |</h1>
+          <Link href="/userDashboard">
+            <a>Dashboard</a>
+          </Link>
           <button type="button" onClick={logoutHandler}>
             Cerrar Sesión
           </button>
