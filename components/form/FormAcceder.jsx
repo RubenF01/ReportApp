@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
+import ButtonLink from "../button/ButtonLink";
 
 const FormAcceder = () => {
   const {
@@ -45,30 +46,35 @@ const FormAcceder = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white absolute left-0 right-0 mx-auto w-[30rem] flex flex-col rounded-2xl shadow-md space-y-3 px-10 py-5"
+      className="bg-white w-[80%] flex flex-col gap-y-10 px-10 py-5"
     >
       <h1 className="font-bold text-center underline text-2xl">Acceder</h1>
-      <label className="font-bold">Correo</label>
-      <input
-        type="email"
-        className="bg-slate-300 rounded py-2 px-3"
-        {...register("correo", { required: true })}
-      />
+      <label className="font-bold flex flex-col">
+        Correo
+        <input
+          type="email"
+          className="border-b-2 border-black py-2 px-3 outline-none"
+          {...register("correo", { required: true })}
+        />
+      </label>
 
-      <label className="font-bold">Contraseña</label>
-      <input
-        type="password"
-        className="bg-slate-300 rounded py-2 px-3"
-        {...register("password", { required: true })}
-      />
+      <label className="font-bold flex flex-col">
+        Contraseña
+        <input
+          type="password"
+          className="border-b-2 border-black py-2 px-3 outline-none"
+          {...register("password", { required: true })}
+        />
+      </label>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center space-x-10">
         <button
           type="submit"
-          className="border-[1px] border-black hover:bg-black hover:text-white w-max rounded-3xl px-5 py-1 cursor-pointer"
+          className="border-[1px] border-black hover:bg-black hover:text-white w-max py-1 px-10 cursor-pointer"
         >
           Acceder
         </button>
+        <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
       </div>
     </form>
   );

@@ -11,8 +11,6 @@ const MisReportes = () => {
   const [deleteId, setDeleteId] = useState("");
   const { loggedUser, reports, setReports } = value;
 
-  console.log(deleteId);
-
   const cedula = loggedUser?.cedula;
 
   const getReports = async () => {
@@ -49,7 +47,7 @@ const MisReportes = () => {
 
   if (loggedUser) {
     return (
-      <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins">
+      <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins pt-6">
         <div className="w-[95%]">
           <div className="flex py-3">
             <Link href="/userDashboard">
@@ -78,6 +76,7 @@ const MisReportes = () => {
         </div>
 
         <div
+          onClick={() => setDeleteMessage(false)}
           className={`absolute inset-0 bg-black/60 flex justify-center items-center z-[2000] ${
             deleteMessage ? "" : "hidden"
           }`}

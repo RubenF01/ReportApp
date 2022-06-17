@@ -6,10 +6,10 @@ import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  const cookies = parseCookies();
   const [loggedUser, setLoggedUser] = useState(null);
   const [location, setLocation] = useState({ lng: 0, lat: 0 });
   const [reports, setReports] = useState([]);
-  const cookies = parseCookies();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     });
 
     cookies?.user
-      ? setLoggedUser(JSON.parse(cookies.user))
+      ? setLoggedUser(JSON.parse(cookies?.user))
       : setLoggedUser(null);
   }, [cookies.user]);
 

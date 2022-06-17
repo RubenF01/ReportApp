@@ -36,13 +36,15 @@ const NavBar = () => {
           <a className={`${logoColorSelector()}`}>ReportApp</a>
         </Link> */}
         <Link href="/">
-          <img src="/logo.png" alt="logo" className="h-10 cursor-pointer" />
+          <a>
+            <img src="/logo.png" alt="logo" className="h-10 cursor-pointer" />
+          </a>
         </Link>
       </div>
 
       {loggedUser && (
         <div className="flex space-x-5 items-center">
-          <h1 className="text-black">Hola, {loggedUser.nombre} |</h1>
+          <h1>Hola, {loggedUser.nombre} |</h1>
           <Link href="/userDashboard">
             <a>Dashboard</a>
           </Link>

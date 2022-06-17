@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 
 export default function Home() {
+  const value = useContext(GlobalContext);
+  const { loggedUser } = value;
   return (
     <div>
       <Head>
@@ -31,10 +35,16 @@ export default function Home() {
           <h1 className="font-bold text-7xl w-[30rem] text-center">
             Bienvenido a ReportApp
           </h1>
-          <div className="flex flex-col space-y-5">
-            <ButtonLink title="Acceder" link="/acceder" />
-            <ButtonLink title="Registro" link="/registro" />
-          </div>
+          {loggedUser ? (
+            <div className="flex flex-col space-y-5">
+              <ButtonLink title="Dashboard" link="/userDashboard" />
+            </div>
+          ) : (
+            <div className="flex flex-col space-y-5">
+              <ButtonLink title="Acceder" link="/acceder" />
+              <ButtonLink title="Registro" link="/registro" />
+            </div>
+          )}
         </div>
       </main>
     </div>
