@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center space-y-10">
-          <h1 className="font-bold text-7xl w-[30rem] text-center">
+          <h1 className="font-bold text-7xl w-[30rem] text-center cursor-default">
             Bienvenido a ReportApp
           </h1>
           {loggedUser ? (

@@ -47,7 +47,7 @@ const ReportItem = ({
   };
 
   return (
-    <div className="w-[70%] h-[700px] mx-auto rounded-xl shadow-xl border-[1px] border-black">
+    <div className="w-[70%] h-[450px] mx-auto rounded-xl shadow-xl border-[1px] border-black">
       <div className="h-[30%] relative">
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap?center=${lng},${lat}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${lng},${lat}&key=${process.env.GOOGLE_API_KEY}`}
@@ -80,7 +80,7 @@ const ReportItem = ({
         showDots={true}
         responsive={responsive}
         ssr={true}
-        className="h-[35%] border-y-[1px] border-black"
+        className="h-[45%] border-y-[1px] border-black"
       >
         {imagenes.map((imagen, index) => (
           <img
@@ -91,7 +91,7 @@ const ReportItem = ({
           />
         ))}
       </Carousel>
-      <div className="flex justify-around text-center font-poppins py-4">
+      {/* <div className="flex justify-around text-center font-poppins py-4">
         <div className="flex flex-col">
           <h1 className="font-bold">Referencias</h1>
           <p>{referencias}</p>
@@ -118,6 +118,15 @@ const ReportItem = ({
           <h1 className="font-bold">Fecha de creación</h1>
           <p>{day + "/" + month + "/" + year}</p>
         </div>
+      </div> */}
+      <div className="text-center pt-3">
+        <h1 className="font-bold">Fecha de creación</h1>
+        <p>{day + "/" + month + "/" + year}</p>
+      </div>
+      <div className="flex justify-center py-2">
+        <button className="border-[1px] border-black px-3 hover:bg-black hover:text-white">
+          Más información
+        </button>
       </div>
     </div>
   );
