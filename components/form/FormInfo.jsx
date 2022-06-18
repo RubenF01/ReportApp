@@ -20,19 +20,17 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
 
   useEffect(() => {
     setSector(
-      address.address_components?.filter((component) =>
+      address?.address_components?.filter((component) =>
         component.types.includes("sublocality")
       )[0].long_name
     );
     setProvince(
-      address.address_components?.filter((component) =>
+      address?.address_components?.filter((component) =>
         component.types.includes("administrative_area_level_1")
       )[0].long_name
     );
     setFullAddress(address.formatted_address);
   });
-
-  console.log(fullAddress);
 
   const onSubmit = async (formData) => {
     try {
@@ -93,38 +91,44 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white absolute left-0 right-0 mx-auto w-[30rem] flex flex-col rounded-2xl shadow-md space-y-3 px-10 py-5 font-poppins"
+      className="bg-white w-[80%] flex flex-col gap-y-5 px-10 py-5 font-poppins"
     >
       <h1 className="font-bold text-center underline text-2xl">
-        Agregue Informacion
+        Agregue Información
       </h1>
-      <label className="font-bold">Referencias</label>
-      <input
-        type="text"
-        className="bg-slate-300 rounded py-2 px-3"
-        {...register("referencias", { required: true })}
-      />
+      <label className="font-bold flex flex-col">
+        Referencias
+        <input
+          type="text"
+          className="py-2 px-3 border-b-2 border-black outline-none"
+          {...register("referencias", { required: true })}
+        />
+      </label>
 
-      <label className="font-bold">Fotos del incidente y referencias</label>
-      <input
-        type="file"
-        multiple={true}
-        className="bg-slate-300 rounded py-2 px-3"
-        {...register("imagenes", { required: true })}
-      />
+      <label className="font-bold flex flex-col">
+        Fotos del incidente y referencias
+        <input
+          type="file"
+          multiple={true}
+          className="py-2 px-3 border-[1px] border-black outline-none"
+          {...register("imagenes", { required: true })}
+        />
+      </label>
 
-      <label className="font-bold">Tipo</label>
-      <select
-        className="border-[1px] border-black"
-        onChange={(e) => setType(e.target.value)}
-      >
-        <option value="Bache">Bache</option>
-        <option value="Cable en el suelo">Cable en el suelo</option>
-        <option value="Espacio ilegalmente ocupado">
-          Espacio ilegalmente ocupado
-        </option>
-        <option value="Otro">Otro</option>
-      </select>
+      <label className="font-bold flex flex-col">
+        Tipo
+        <select
+          className="border-[1px] border-black outline-none"
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="Bache">Bache</option>
+          <option value="Cableado en el suelo">Cableado en el suelo</option>
+          <option value="Espacio ilegalmente ocupado">
+            Espacio ilegalmente ocupado
+          </option>
+          <option value="Otro">Otro</option>
+        </select>
+      </label>
 
       <div>
         <h1>Dirección seleccionada</h1>
@@ -134,7 +138,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
       <div className="flex justify-center">
         <button
           type="submit"
-          className="border-[1px] border-black hover:bg-black hover:text-white w-max px-5 py-1 cursor-pointer"
+          className="border-[1px] border-black hover:bg-black hover:text-white w-max py-1 px-10 cursor-pointer"
         >
           Enviar
         </button>

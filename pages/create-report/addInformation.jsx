@@ -9,13 +9,24 @@ const AddInformation = () => {
 
   if (loggedUser) {
     return (
-      <div className="h-screen flex items-center">
-        <FormInfo
-          loggedUser={loggedUser}
-          lng={lng}
-          lat={lat}
-          address={address}
-        />
+      <div className="h-screen flex items-center relative">
+        <div className="w-1/2 relative">
+          <img
+            className="w-full h-screen object-cover"
+            src="/lincoln.jpeg"
+            alt="lincoln"
+          />
+
+          <div className="bg-black/70 absolute inset-0 flex flex-col items-center justify-center space-y-5" />
+        </div>
+        <div className="w-1/2 flex justify-center items-center">
+          <FormInfo
+            loggedUser={loggedUser}
+            lng={lng}
+            lat={lat}
+            address={address}
+          />
+        </div>
       </div>
     );
   } else {
