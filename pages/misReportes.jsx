@@ -11,6 +11,8 @@ const MisReportes = () => {
   const [deleteId, setDeleteId] = useState("");
   const { loggedUser, reports, setReports } = value;
 
+  console.log(reports);
+
   const cedula = loggedUser?.cedula;
 
   const getReports = async () => {
@@ -75,14 +77,15 @@ const MisReportes = () => {
           </div>
         </div>
 
+        {/* Delte message overlay and message */}
+
         <div
-          onClick={() => setDeleteMessage(false)}
-          className={`absolute inset-0 bg-black/60 flex justify-center items-center z-[2000] ${
+          className={`absolute inset-0 flex justify-center items-center ${
             deleteMessage ? "" : "hidden"
           }`}
         >
-          <div className="bg-white border-[1px] border-black py-10 px-10 space-y-4 rounded-xl">
-            <h1 className="text-center">¿Estás seguro?</h1>
+          <div className="bg-white border-[1px] border-black py-10 px-10 space-y-4 rounded-xl z-[2500]">
+            <h1 className="text-center cursor-default">¿Estás seguro?</h1>
             <div className="flex space-x-5">
               <button
                 onClick={deleteReport}
@@ -99,6 +102,13 @@ const MisReportes = () => {
             </div>
           </div>
         </div>
+
+        <div
+          onClick={() => setDeleteMessage(false)}
+          className={`absolute inset-0 bg-black/60 flex justify-center items-center z-[2000] ${
+            deleteMessage ? "" : "hidden"
+          }`}
+        ></div>
       </div>
     );
   } else {

@@ -5,7 +5,19 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 const ReportItem = ({
-  report: { lat, lng, referencias, status, creationDate, imagenes, type, _id },
+  report: {
+    lat,
+    lng,
+    referencias,
+    status,
+    creationDate,
+    imagenes,
+    type,
+    _id,
+    sector,
+    province,
+    fullAddress,
+  },
   getReports,
   setDeleteMessage,
   setDeleteId,
@@ -93,6 +105,14 @@ const ReportItem = ({
         <div className="text-center">
           <h1 className="font-bold">Estatus</h1>
           <p>{status ? "Reparado" : "Sin reparar"}</p>
+        </div>
+        <div>
+          <h1>Dirección</h1>
+          <p>{fullAddress}</p>
+        </div>
+        <div>
+          <h1>Sector</h1>
+          <p>{sector}</p>
         </div>
         <div className="text-center">
           <h1 className="font-bold">Fecha de creación</h1>
