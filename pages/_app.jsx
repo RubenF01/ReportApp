@@ -12,11 +12,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [reports, setReports] = useState([]);
   const [address, setAddress] = useState([]);
 
-  useEffect(() => {
-    cookies?.user
-      ? setLoggedUser(JSON.parse(cookies?.user))
-      : setLoggedUser(null);
-  }, [cookies.user]);
+  console.log(address);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -25,7 +21,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         lat: position.coords.longitude,
       });
     });
-  }, [location]);
+
+    cookies?.user
+      ? setLoggedUser(JSON.parse(cookies?.user))
+      : setLoggedUser(null);
+  }, [cookies.user]);
 
   return (
     <SessionProvider session={session}>

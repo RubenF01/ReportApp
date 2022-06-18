@@ -20,14 +20,18 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
 
   useEffect(() => {
     setSector(
-      address?.address_components?.filter((component) =>
-        component.types.includes("sublocality")
-      )[0].long_name
+      address?.address_components
+        ? address?.address_components?.filter((component) =>
+            component.types.includes("sublocality")
+          )[0]?.long_name
+        : ""
     );
     setProvince(
-      address?.address_components?.filter((component) =>
-        component.types.includes("administrative_area_level_1")
-      )[0].long_name
+      address?.address_components
+        ? address?.address_components?.filter((component) =>
+            component.types.includes("administrative_area_level_1")
+          )[0]?.long_name
+        : ""
     );
     setFullAddress(address.formatted_address);
   });
