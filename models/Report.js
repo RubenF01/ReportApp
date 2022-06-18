@@ -33,6 +33,18 @@ const ReportSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fullAddress: {
+    type: String,
+    required: true,
+  },
+  sector: {
+    type: String,
+    required: true,
+  },
+  province: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports =

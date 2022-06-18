@@ -10,6 +10,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [loggedUser, setLoggedUser] = useState(null);
   const [location, setLocation] = useState({ lng: 0, lat: 0 });
   const [reports, setReports] = useState([]);
+  const [address, setAddress] = useState([]);
+
+  console.log(address);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -27,7 +30,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <GlobalContext.Provider
-        value={{ loggedUser, location, setLocation, reports, setReports }}
+        value={{
+          loggedUser,
+          location,
+          setLocation,
+          reports,
+          setReports,
+          address,
+          setAddress,
+        }}
       >
         <Layout>
           <Component {...pageProps} />

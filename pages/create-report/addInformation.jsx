@@ -4,13 +4,18 @@ import GlobalContext from "../../context/GlobalContext";
 
 const AddInformation = () => {
   const value = useContext(GlobalContext);
-  const { loggedUser, location } = value;
+  const { loggedUser, location, address } = value;
   const { lng, lat } = location;
 
   if (loggedUser) {
     return (
       <div className="h-screen flex items-center">
-        <FormInfo loggedUser={loggedUser} lng={lng} lat={lat} />
+        <FormInfo
+          loggedUser={loggedUser}
+          lng={lng}
+          lat={lat}
+          address={address}
+        />
       </div>
     );
   } else {

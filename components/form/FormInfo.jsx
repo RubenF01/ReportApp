@@ -1,20 +1,38 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-const FormInfo = ({ loggedUser, lng, lat }) => {
-  const [type, setType] = useState("Bache");
-  const { cedula } = loggedUser;
-  const defaultStatus = false;
-  const router = useRouter();
-
+const FormInfo = ({ loggedUser, lng, lat, address }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
+  const [type, setType] = useState("Bache");
+  const [fullAddress, setFullAddress] = useState("");
+  const [sector, setSector] = useState("");
+  const [province, setProvince] = useState("");
+  const { cedula } = loggedUser;
+  const defaultStatus = false;
+  const router = useRouter();
+
+  useEffect(() => {
+    setSector(
+      address.address_components?.filter((component) =>
+        component.types.includes("sublocality")
+      )[0].long_name
+    );
+    setProvince(
+      address.address_components?.filter((component) =>
+        component.types.includes("administrative_area_level_1")
+      )[0].long_name
+    );
+    setFullAddress(address.formatted_address);
+  });
+
+  console.log(fullAddress);
 
   const onSubmit = async (formData) => {
     try {
@@ -24,6 +42,7 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
       const date = Date.now();
       const imageData = new FormData();
 
+      // Upload images to Cloudinary
       for (const imagen of imagenes) {
         imageData.append("file", imagen);
         imageData.append("upload_preset", "my-uploads");
@@ -38,6 +57,7 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
         imageLinks.push(data.secure_url);
       }
 
+      // Create report
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +75,9 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
           defaultStatus,
           date,
           type,
+          fullAddress,
+          sector,
+          province,
         },
         config
       );
@@ -91,7 +114,10 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
       />
 
       <label className="font-bold">Tipo</label>
-      <select onChange={(e) => setType(e.target.value)}>
+      <select
+        className="border-[1px] border-black"
+        onChange={(e) => setType(e.target.value)}
+      >
         <option value="Bache">Bache</option>
         <option value="Cable en el suelo">Cable en el suelo</option>
         <option value="Espacio ilegalmente ocupado">
@@ -99,6 +125,11 @@ const FormInfo = ({ loggedUser, lng, lat }) => {
         </option>
         <option value="Otro">Otro</option>
       </select>
+
+      <div>
+        <h1>Dirección seleccionada</h1>
+        <p>{fullAddress}</p>
+      </div>
 
       <div className="flex justify-center">
         <button

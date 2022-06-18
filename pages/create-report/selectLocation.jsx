@@ -9,7 +9,16 @@ const ReportMap = dynamic(() => import("../../components/map/ReportMap"), {
 
 const SelectLocation = () => {
   const value = useContext(GlobalContext);
-  const { loggedUser, location, setLocation } = value;
+  const { loggedUser, location, setLocation, setAddress } = value;
+
+  const fetchAddress = async () => {
+    const { lng, lat } = location;
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lng},${lat}&key=${process.env.GOOGLE_API_KEY}`
+    );
+    const data = await response.json();
+    setAddress(data.results[0]);
+  };
 
   if (loggedUser) {
     return (
@@ -28,7 +37,10 @@ const SelectLocation = () => {
         />
         <div className="pt-5">
           <Link href="/create-report/addInformation">
-            <a className="border-2 border-black text-xl px-5 py-2 font-poppins hover:text-white hover:bg-black">
+            <a
+              onClick={fetchAddress}
+              className="border-2 border-black text-xl px-5 py-2 font-poppins hover:text-white hover:bg-black"
+            >
               Continuar
             </a>
           </Link>

@@ -16,6 +16,9 @@ export default async (req, res) => {
         defaultStatus,
         date,
         type,
+        fullAddress,
+        sector,
+        province,
       } = req.body;
 
       await new Report({
@@ -27,6 +30,9 @@ export default async (req, res) => {
         status: defaultStatus,
         creationDate: date,
         type,
+        fullAddress,
+        sector,
+        province,
       }).save();
 
       res.status(200).json({ message: "Reporte creado" });
