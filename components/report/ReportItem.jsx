@@ -47,7 +47,7 @@ const ReportItem = ({
   };
 
   return (
-    <div className="w-[70%] h-[450px] mx-auto shadow-xl border-[1px] border-black">
+    <div className="w-[90%] md:w-[70%] lg:w-[95%] 2xl:w-[70%] h-[450px] mx-auto shadow-xl border-[1px] border-black overflow-x-hidden">
       <div className="h-[30%] relative">
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap?center=${lng},${lat}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${lng},${lat}&key=${process.env.GOOGLE_API_KEY}`}
@@ -79,7 +79,7 @@ const ReportItem = ({
         <p>{day + "/" + month + "/" + year}</p>
       </div>
 
-      <div className="flex justify-center py-2 space-x-4">
+      <div className="flex justify-center py-2 space-x-4 lg:text-sm xl:text-sm 2xl:text-base">
         <button
           onClick={() => {
             setInfo({
@@ -97,7 +97,7 @@ const ReportItem = ({
             });
             setInfoPanel(true);
           }}
-          className="border-[1px] border-black px-3 hover:bg-black hover:text-white"
+          className="border-[1px] border-black px-3 py-1 hover:bg-black hover:text-white"
         >
           MÁS INFORMACIÓN
         </button>
@@ -106,7 +106,7 @@ const ReportItem = ({
             setDeleteMessage(true);
             setDeleteId(_id);
           }}
-          className="border-[1px] border-black px-3 hover:bg-red-700 hover:text-white"
+          className="border-[1px] border-black px-3 py-1 hover:bg-red-700 hover:text-white"
         >
           ELIMINAR
         </button>

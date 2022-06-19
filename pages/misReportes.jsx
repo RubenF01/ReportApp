@@ -67,7 +67,7 @@ const MisReportes = () => {
           <h1 className="font-poppins font-bold text-2xl">MIS REPORTES</h1>
         </div>
         <div className="h-[80%] w-full flex justify-center items-center">
-          <div className="h-full w-[95%] grid grid-cols-1 lg:grid-cols-3 overflow-y-auto gap-y-10 py-3">
+          <div className="h-full w-[95%] grid md:grid-cols-1 lg:grid-cols-3 overflow-y-auto gap-y-10 py-3">
             {reports.map((report, index) => (
               <ReportItem
                 key={index}

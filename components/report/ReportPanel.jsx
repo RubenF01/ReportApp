@@ -7,7 +7,6 @@ const ReportPanel = ({ info, infoPanel, setInfoPanel }) => {
   const month = new Date(info.creationDate).getMonth() + 1;
   const day = new Date(info.creationDate).getDate().toString();
 
-  let startPointWidth = infoPanel && window.innerWidth;
   return (
     <AnimatePresence>
       {infoPanel ? (
@@ -16,7 +15,7 @@ const ReportPanel = ({ info, infoPanel, setInfoPanel }) => {
           animate={{ x: 0 }}
           transition={{ duration: 0.5 }}
           exit={{ x: "100%" }}
-          className="absolute right-0 top-0 bottom-0 w-1/2 bg-white z-[3000]  border-l-[1px] border-black shadow-2xl"
+          className="absolute right-0 top-0 bottom-0 md:w-full lg:w-1/2 bg-white z-[3000]  border-l-[1px] border-black shadow-2xl"
         >
           <div className="h-[30%] relative border-b-[1px] border-black">
             <img
