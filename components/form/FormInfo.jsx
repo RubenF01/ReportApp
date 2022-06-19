@@ -135,7 +135,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
       </label>
 
       <div>
-        <h1>Dirección seleccionada</h1>
+        <h1 className="font-bold">Dirección seleccionada</h1>
         <p>{fullAddress}</p>
       </div>
 

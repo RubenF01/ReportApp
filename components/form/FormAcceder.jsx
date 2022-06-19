@@ -3,6 +3,7 @@ import axios from "axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import ButtonLink from "../button/ButtonLink";
+import { motion } from "framer-motion";
 
 const FormAcceder = () => {
   const {
@@ -44,7 +45,10 @@ const FormAcceder = () => {
   };
 
   return (
-    <form
+    <motion.form
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white w-[80%] flex flex-col gap-y-10 px-10 py-5"
     >
@@ -76,7 +80,7 @@ const FormAcceder = () => {
         </button>
         <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
       </div>
-    </form>
+    </motion.form>
   );
 };
 

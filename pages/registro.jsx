@@ -28,7 +28,7 @@ const Registro = () => {
         </div>
       </main> */}
 
-      <main className="flex font-poppins min-h-screen">
+      <main className="flex font-poppins min-h-screen overflow-x-hidden">
         <div className="w-1/2 relative">
           <img
             className="h-screen w-full object-cover"

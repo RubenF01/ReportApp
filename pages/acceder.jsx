@@ -14,7 +14,7 @@ const Acceder = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex font-poppins min-h-screen">
+      <main className="flex font-poppins min-h-screen overflow-x-hidden">
         <div className="w-1/2 relative">
           <img
             className="h-screen w-full object-cover"

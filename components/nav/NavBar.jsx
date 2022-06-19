@@ -8,7 +8,7 @@ import { useContext } from "react";
 const NavBar = () => {
   const value = useContext(GlobalContext);
   const router = useRouter();
-  let { loggedUser } = value;
+  let { loggedUser, changeColor } = value;
 
   const logoutHandler = async () => {
     cookie.remove("token");
@@ -17,24 +17,9 @@ const NavBar = () => {
     router.push("/");
   };
 
-  // const logoColorSelector = () => {
-  //   if (
-  //     router.pathname === "/" ||
-  //     router.pathname === "/acceder" ||
-  //     router.pathname === "/registro"
-  //   ) {
-  //     return "text-white";
-  //   } else {
-  //     return "text-black";
-  //   }
-  // };
-
   return (
     <div className="absolute flex px-5 pt-3 z-50 font-poppins justify-between w-full">
       <div>
-        {/* <Link href="/">
-          <a className={`${logoColorSelector()}`}>ReportApp</a>
-        </Link> */}
         <Link href="/">
           <a>
             <img src="/logo.png" alt="logo" className="h-10 cursor-pointer" />
@@ -43,8 +28,12 @@ const NavBar = () => {
       </div>
 
       {loggedUser && (
-        <div className="flex space-x-5 items-center">
-          <h1>Hola, {loggedUser.nombre} |</h1>
+        <div
+          className={`flex space-x-5 items-center ${
+            changeColor ? "text-white" : "text-black"
+          }`}
+        >
+          <h1 className="cursor-default">Hola, {loggedUser.nombre} |</h1>
           <Link href="/userDashboard">
             <a>Dashboard</a>
           </Link>

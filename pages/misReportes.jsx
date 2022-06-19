@@ -4,14 +4,17 @@ import axios from "axios";
 import ReportItem from "../components/report/ReportItem";
 import Link from "next/link";
 import Arrowleft from "../public/arrowleft.svg";
+import ReportPanel from "../components/report/ReportPanel";
+import BlackOverlay from "../components/layout/BlackOverlay";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MisReportes = () => {
   const value = useContext(GlobalContext);
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+  const [infoPanel, setInfoPanel] = useState(false);
+  const [info, setInfo] = useState({});
   const { loggedUser, reports, setReports } = value;
-
-  console.log(reports);
 
   const cedula = loggedUser?.cedula;
 
@@ -49,14 +52,14 @@ const MisReportes = () => {
 
   if (loggedUser) {
     return (
-      <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins pt-6">
+      <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins pt-6 overflow-x-hidden">
         <div className="w-[95%]">
           <div className="flex py-3">
             <Link href="/userDashboard">
               <a className="block">
                 <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white">
                   <Arrowleft className="w-4" />
-                  <p className="pl-2 font-bold">Back</p>
+                  <p className="pl-2 font-bold">Volver</p>
                 </div>
               </a>
             </Link>
@@ -72,43 +75,52 @@ const MisReportes = () => {
                 getReports={getReports}
                 setDeleteMessage={setDeleteMessage}
                 setDeleteId={setDeleteId}
+                setInfo={setInfo}
+                setInfoPanel={setInfoPanel}
               />
             ))}
           </div>
         </div>
 
-        {/* Delte message overlay and message */}
-
-        <div
-          className={`absolute inset-0 flex justify-center items-center ${
-            deleteMessage ? "" : "hidden"
-          }`}
-        >
-          <div className="bg-white border-[1px] border-black py-10 px-10 space-y-4 rounded-xl z-[2500]">
-            <h1 className="text-center cursor-default">¿Estás seguro?</h1>
-            <div className="flex space-x-5">
-              <button
-                onClick={deleteReport}
-                className="border-[1px] border-black px-3 py-2 hover:text-white hover:bg-red-700"
-              >
-                Eliminar
-              </button>
-              <button
-                onClick={() => setDeleteMessage(false)}
-                className="border-[1px] border-black px-3 py-2 hover:text-white hover:bg-black"
-              >
-                Cancelar
-              </button>
+        {/* Delete message overlay and message */}
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`absolute inset-0 flex justify-center items-center ${
+              deleteMessage ? "" : "hidden"
+            }`}
+          >
+            <div className="bg-white border-[1px] border-black py-10 px-10 space-y-4 z-[2500]">
+              <h1 className="text-center cursor-default">¿Estás seguro?</h1>
+              <div className="flex space-x-5">
+                <button
+                  onClick={deleteReport}
+                  className="border-[1px] border-black px-3 py-2 hover:text-white hover:bg-red-700"
+                >
+                  Eliminar
+                </button>
+                <button
+                  onClick={() => setDeleteMessage(false)}
+                  className="border-[1px] border-black px-3 py-2 hover:text-white hover:bg-black"
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
+        <BlackOverlay state={deleteMessage} stateChange={setDeleteMessage} />
 
-        <div
-          onClick={() => setDeleteMessage(false)}
-          className={`absolute inset-0 bg-black/60 flex justify-center items-center z-[2000] ${
-            deleteMessage ? "" : "hidden"
-          }`}
-        ></div>
+        {/* Info panel */}
+        <ReportPanel
+          info={info}
+          infoPanel={infoPanel}
+          setInfoPanel={setInfoPanel}
+        />
+        <BlackOverlay state={infoPanel} stateChange={setInfoPanel} />
       </div>
     );
   } else {

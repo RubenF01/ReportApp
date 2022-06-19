@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ButtonLink from "../button/ButtonLink";
+import { motion } from "framer-motion";
 
 const FormRegistro = () => {
   const {
@@ -35,7 +36,10 @@ const FormRegistro = () => {
   };
 
   return (
-    <form
+    <motion.form
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white flex flex-col w-[80%] gap-y-4 px-10 py-5"
     >
@@ -96,7 +100,7 @@ const FormRegistro = () => {
         </button>
         <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
       </div>
-    </form>
+    </motion.form>
   );
 };
 
