@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -107,6 +108,9 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
           className="py-2 px-3 border-b-2 border-black outline-none"
           {...register("referencias", { required: true })}
         />
+        {errors.referencias && (
+          <div className="text-red-700">Las referencias son requeridas</div>
+        )}
       </label>
 
       <label className="font-bold flex flex-col">
@@ -117,6 +121,9 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
           className="py-2 px-3 border-[1px] border-black outline-none"
           {...register("imagenes", { required: true })}
         />
+        {errors.imagenes && (
+          <div className="text-red-700">Las fotos son requeridas</div>
+        )}
       </label>
 
       <label className="font-bold flex flex-col">

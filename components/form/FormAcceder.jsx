@@ -50,9 +50,11 @@ const FormAcceder = () => {
       animate={{ x: 0 }}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-[95%] sm:w-[80%] flex flex-col gap-y-10 px-10 py-5"
+      className="bg-white w-[95%] sm:w-[80%] flex flex-col gap-y-10 px-4 md:px-10 py-5"
     >
-      <h1 className="font-bold text-center underline text-2xl">Acceder</h1>
+      <h1 className="font-bold text-center underline text-2xl hidden lg:block">
+        Acceder
+      </h1>
       <label className="font-bold flex flex-col">
         Correo
         <input

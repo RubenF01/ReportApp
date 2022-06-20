@@ -41,9 +41,11 @@ const FormRegistro = () => {
       animate={{ x: 0 }}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white flex flex-col w-[95%] sm:w-[80%] gap-y-4 px-10 py-5"
+      className="bg-white flex flex-col w-[95%] sm:w-[80%] gap-y-4 px-4 md:px-10 py-5"
     >
-      <h1 className="font-bold text-center underline text-2xl">Registro</h1>
+      <h1 className="font-bold text-center underline text-2xl hidden lg:block">
+        Registro
+      </h1>
       <label className="font-bold flex flex-col">
         Nombre
         <input
@@ -117,7 +119,7 @@ const FormRegistro = () => {
         )}
       </label>
 
-      <div className="flex justify-center space-x-5 sm:space-x-10 pt-10">
+      <div className="flex justify-center space-x-2 sm:space-x-10 pt-10">
         <button
           type="submit"
           className="border-[1px] border-black hover:bg-black hover:text-white w-max py-1 px-10 cursor-pointer"

@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import FormRegistro from "../components/form/FormRegistro";
+import { useMedia } from "react-use";
 
 const Registro = () => {
+  const isWide = useMedia("(max-width: 1023px)", false);
+
   return (
     <div>
       <Head>
@@ -31,6 +34,7 @@ const Registro = () => {
             <h1 className="hidden lg:block text-2xl lg:text-6xl text-white cursor-default">
               ReportApp
             </h1>
+            {isWide && <h1 className="text-white text-4xl pt-8">Registro</h1>}
           </div>
         </div>
         <div className="lg:w-1/2 flex justify-center items-center">

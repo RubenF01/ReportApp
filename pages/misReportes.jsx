@@ -54,14 +54,12 @@ const MisReportes = () => {
     return (
       <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins pt-6 overflow-x-hidden">
         <div className="w-[95%]">
-          <div className="flex py-3">
+          <div className="flex pb-3 pt-8 lg:py-3">
             <Link href="/userDashboard">
-              <a className="block">
-                <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white">
-                  <Arrowleft className="w-4" />
-                  <p className="pl-2 font-bold">Volver</p>
-                </div>
-              </a>
+              <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white">
+                <Arrowleft className="w-4" />
+                <p className="pl-2 font-bold">Volver</p>
+              </div>
             </Link>
           </div>
           <h1 className="font-poppins font-bold text-2xl">MIS REPORTES</h1>

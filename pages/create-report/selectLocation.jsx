@@ -23,7 +23,7 @@ const SelectLocation = () => {
   if (loggedUser) {
     return (
       <div className="flex flex-col justify-center items-center h-screen space-y-3">
-        <div className="max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] w-full font-bold font-poppins">
+        <div className="max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] w-full font-bold font-poppins pt-14 pb-4 lg:pt-0 lg:pb-0">
           <h1 className="text-2xl">Seleccione la localización</h1>
         </div>
         <ReportMap

@@ -27,7 +27,7 @@ export default function Home() {
             alt="Landing Background"
           />
 
-          <div className="bg-black/70 absolute inset-0 flex flex-col items-center justify-center space-y-5">
+          <div className="bg-black/70 absolute inset-0 flex flex-col items-center justify-center space-y-5 mt-10 lg:mt-0">
             <img
               className="w-32 md:w-44 lg:w-auto"
               src="/logo.png"
