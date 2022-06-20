@@ -26,7 +26,6 @@ export default function Home() {
         />
         <meta name="description" content="description of your project" />
         <meta name="theme-color" content="#000" />
-        <title>Title of the project</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
