@@ -28,7 +28,7 @@ const ReportPanel = ({ info, infoPanel, setInfoPanel }) => {
               onClick={() => setInfoPanel(false)}
               className="flex items-center border-r-[1px] border-t-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white absolute bottom-0 bg-white"
             >
-              <Arrowleft className="w-4" />
+              <Arrowleft className="w-4 mr-2" />
               Volver
             </button>
           </div>

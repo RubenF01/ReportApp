@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require("next-pwa");
+
 const nextConfig = {
   reactStrictMode: true,
   webpack(config) {
@@ -17,6 +19,11 @@ const nextConfig = {
     IMG_UPLOAD_LINK: process.env.IMG_UPLOAD_LINK,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
   },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  },
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import GlobalContext from "../context/GlobalContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -56,7 +57,7 @@ const MisReportes = () => {
         <div className="w-[95%]">
           <div className="flex pb-3 pt-8 lg:py-3">
             <Link href="/userDashboard">
-              <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white">
+              <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white cursor-pointer">
                 <Arrowleft className="w-4" />
                 <p className="pl-2 font-bold">Volver</p>
               </div>

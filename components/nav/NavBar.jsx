@@ -7,9 +7,10 @@ import { useContext, useState } from "react";
 import { useMedia } from "react-use";
 import Bars from "../../public/bars.svg";
 import { motion, AnimatePresence } from "framer-motion";
+import Xmark from "../../public/xmark.svg";
 
 const NavBar = () => {
-  const isWide = useMedia("(min-width: 1024px)");
+  const isWide = useMedia("(min-width: 1024px)", false);
   const [isOpen, setIsOpen] = useState(false);
   const value = useContext(GlobalContext);
   const router = useRouter();
@@ -65,7 +66,15 @@ const NavBar = () => {
 
         {loggedUser ? (
           <div onClick={() => setIsOpen(!isOpen)}>
-            <Bars className="w-7" />
+            {isOpen ? (
+              <div>
+                <Xmark className="w-6" />
+              </div>
+            ) : (
+              <div>
+                <Bars className="w-6" />
+              </div>
+            )}
           </div>
         ) : null}
 

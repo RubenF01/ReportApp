@@ -11,6 +11,8 @@ const FormRegistro = () => {
     reset,
   } = useForm();
 
+  const creationDate = Date.now();
+
   const onSubmit = async (formData) => {
     const { nombre, apellido, correo, cedula, password } = formData;
 
@@ -28,6 +30,7 @@ const FormRegistro = () => {
         correo,
         cedula,
         password,
+        creationDate,
       },
       config
     );

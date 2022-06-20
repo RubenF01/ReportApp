@@ -29,19 +29,17 @@ const UserDashboard = () => {
             transition={{ duration: 0.4 }}
             onMouseEnter={() => setIsCreateHover(true)}
             onMouseLeave={() => setIsCreateHover(false)}
-            className="flex w-full h-full justify-center cursor-pointer items-center border-b-[1px] lg:border-r-[1px] border-black"
+            className="flex w-full h-full justify-center cursor-pointer items-center border-b-[1px] lg:border-b-0 lg:border-r-[1px] border-black"
           >
             <motion.figure
               initial={variants.start}
               animate={isCreateHover ? "end" : "start"}
               transition={{ duration: 0.4 }}
               variants={variants}
-              className="w-[350px] lg:w-[550px]"
+              className="w-[300px] lg:w-[550px]"
             >
-              <a>
-                <Triangle />
-                <figcaption>CREAR REPORTE</figcaption>
-              </a>
+              <Triangle />
+              <figcaption>CREAR REPORTE</figcaption>
             </motion.figure>
           </motion.div>
         </Link>
@@ -63,7 +61,7 @@ const UserDashboard = () => {
               setIsReportsHover(false);
             }}
             onClick={() => setChangeColor(false)}
-            className="flex w-full h-full cursor-pointer justify-center items-center border-t-[1px] lg:border-l-[1px] border-black"
+            className="flex w-full h-full cursor-pointer justify-center items-center border-t-[1px] lg:border-t-0 lg:border-l-[1px] border-black"
           >
             <motion.figure
               initial={variants.start}
@@ -72,10 +70,8 @@ const UserDashboard = () => {
               variants={variants}
               className="w-[15rem] lg:w-[23rem]"
             >
-              <a>
-                <Clipboard className="mt-[-25px]" />
-                <figcaption className="mt-[30px]">MIS REPORTES</figcaption>
-              </a>
+              <Clipboard className="mt-[-25px]" />
+              <figcaption className="mt-[30px]">MIS REPORTES</figcaption>
             </motion.figure>
           </motion.div>
         </Link>

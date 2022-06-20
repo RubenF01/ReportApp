@@ -8,7 +8,8 @@ dbConnect();
 export default async (req, res) => {
   try {
     if (req.method === "POST") {
-      const { nombre, apellido, correo, cedula, password } = req.body;
+      const { nombre, apellido, correo, cedula, password, creationDate } =
+        req.body;
       const user = await User.findOne({ correo });
       const userCedula = await User.findOne({ cedula });
       const isAdmin = false;
@@ -26,6 +27,7 @@ export default async (req, res) => {
         cedula,
         password: hashedPassword,
         isAdmin,
+        creationDate,
       }).save();
 
       res.status(200).json({ message: "Registro exitoso" });

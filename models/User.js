@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  creationDate: {
+    type: Number,
+    required: true,
+  },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", UserSchema);
