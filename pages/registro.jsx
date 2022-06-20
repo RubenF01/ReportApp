@@ -14,34 +14,26 @@ const Registro = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <main className="flex font-poppins min-h-screen">
-        <div className="w-full relative">
+      <main className="flex flex-col lg:flex-row font-poppins min-h-screen overflow-x-hidden">
+        <div className="lg:w-1/2 relative">
           <img
-            className="h-screen w-full object-cover"
-            src="/landingbackground.png"
-            alt="Landing Background"
-          />
-
-          <div className="bg-black/70 absolute inset-0 flex justify-center items-center">
-            <FormRegistro />
-          </div>
-        </div>
-      </main> */}
-
-      <main className="flex font-poppins min-h-screen overflow-x-hidden">
-        <div className="w-1/2 relative">
-          <img
-            className="h-screen w-full object-cover"
+            className="h-[250px] lg:h-screen w-full object-cover"
             src="/landingbackground.png"
             alt="Landing Background"
           />
 
           <div className="bg-black/70 absolute inset-0 flex flex-col items-center justify-center space-y-5">
-            <img src="/logo.png" alt="logo" />
-            <h1 className="text-6xl text-white cursor-default">ReportApp</h1>
+            <img
+              className="hidden lg:block lg:w-auto"
+              src="/logo.png"
+              alt="logo"
+            />
+            <h1 className="hidden lg:block text-2xl lg:text-6xl text-white cursor-default">
+              ReportApp
+            </h1>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center items-center">
+        <div className="lg:w-1/2 flex justify-center items-center">
           <FormRegistro />
         </div>
       </main>

@@ -50,7 +50,7 @@ const FormAcceder = () => {
       animate={{ x: 0 }}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-[80%] flex flex-col gap-y-10 px-10 py-5"
+      className="bg-white w-[95%] sm:w-[80%] flex flex-col gap-y-10 px-10 py-5"
     >
       <h1 className="font-bold text-center underline text-2xl">Acceder</h1>
       <label className="font-bold flex flex-col">
@@ -60,6 +60,9 @@ const FormAcceder = () => {
           className="border-b-2 border-black py-2 px-3 outline-none"
           {...register("correo", { required: true })}
         />
+        {errors.correo && (
+          <span className="text-red-700">El correo es requerido</span>
+        )}
       </label>
 
       <label className="font-bold flex flex-col">
@@ -69,9 +72,12 @@ const FormAcceder = () => {
           className="border-b-2 border-black py-2 px-3 outline-none"
           {...register("password", { required: true })}
         />
+        {errors.password && (
+          <span className="text-red-700">La contraseña es requerida</span>
+        )}
       </label>
 
-      <div className="flex justify-center space-x-10">
+      <div className="flex justify-center space-x-5 sm:space-x-10">
         <button
           type="submit"
           className="border-[1px] border-black hover:bg-black hover:text-white w-max py-1 px-10 cursor-pointer"

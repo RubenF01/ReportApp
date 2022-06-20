@@ -18,7 +18,7 @@ const UserDashboard = () => {
 
   if (loggedUser) {
     return (
-      <div className="text-2xl h-screen font-bold grid grid-cols-2 items-center text-center">
+      <div className="text-2xl h-screen font-bold grid grid-cols-1 lg:grid-cols-2 items-center text-center">
         <Link href="/create-report/selectLocation">
           <motion.div
             initial={{ backgroundColor: "#fff", color: "black" }}
@@ -29,14 +29,14 @@ const UserDashboard = () => {
             transition={{ duration: 0.4 }}
             onMouseEnter={() => setIsCreateHover(true)}
             onMouseLeave={() => setIsCreateHover(false)}
-            className="flex w-full h-full justify-center cursor-pointer items-center border-r-[1px] border-black"
+            className="flex w-full h-full justify-center cursor-pointer items-center border-b-[1px] lg:border-r-[1px] border-black"
           >
             <motion.figure
               initial={variants.start}
               animate={isCreateHover ? "end" : "start"}
               transition={{ duration: 0.4 }}
               variants={variants}
-              className="w-[550px]"
+              className="w-[350px] lg:w-[550px]"
             >
               <a>
                 <Triangle />
@@ -63,14 +63,14 @@ const UserDashboard = () => {
               setIsReportsHover(false);
             }}
             onClick={() => setChangeColor(false)}
-            className="flex w-full h-full cursor-pointer justify-center items-center border-l-[1px] border-black"
+            className="flex w-full h-full cursor-pointer justify-center items-center border-t-[1px] lg:border-l-[1px] border-black"
           >
             <motion.figure
               initial={variants.start}
               animate={isReportsHover ? "end" : "start"}
               transition={{ duration: 0.4 }}
               variants={variants}
-              className="w-[23rem]"
+              className="w-[15rem] lg:w-[23rem]"
             >
               <a>
                 <Clipboard className="mt-[-25px]" />

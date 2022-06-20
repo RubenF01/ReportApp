@@ -28,7 +28,8 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.3",
     "react-leaflet": "^4.0.0",
-    "react-multi-carousel": "^2.8.1"
+    "react-multi-carousel": "^2.8.1",
+    "react-use": "^17.4.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",
