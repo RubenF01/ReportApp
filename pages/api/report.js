@@ -21,9 +21,6 @@ export default async (req, res) => {
         province,
       } = req.body;
 
-      if (!sector) sector = "";
-      if (!province) province = "";
-
       await new Report({
         createdBy: cedula,
         lat,
@@ -34,8 +31,8 @@ export default async (req, res) => {
         creationDate: date,
         type,
         fullAddress,
-        sector,
-        province,
+        sector: sector ? sector : "",
+        province: province ? province : "",
       }).save();
 
       res.status(200).json({ message: "Report created" });
