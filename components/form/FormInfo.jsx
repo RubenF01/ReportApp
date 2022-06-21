@@ -96,9 +96,9 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white w-[80%] flex flex-col gap-y-5 px-10 py-5 font-poppins"
+      className="bg-white w-[80%] flex flex-col gap-y-5 px-4 md:px-10 py-5 font-poppins"
     >
-      <h1 className="font-bold text-center underline text-2xl">
+      <h1 className="font-bold text-center underline text-2xl cursor-default hidden lg:block">
         Agregue Información
       </h1>
       <label className="font-bold flex flex-col">
