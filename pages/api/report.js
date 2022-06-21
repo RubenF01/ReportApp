@@ -21,6 +21,9 @@ export default async (req, res) => {
         province,
       } = req.body;
 
+      if (!sector) sector = "";
+      if (!province) province = "";
+
       await new Report({
         createdBy: cedula,
         lat,
