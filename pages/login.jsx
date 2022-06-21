@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import FormAcceder from "../components/form/FormAcceder";
+import FormLogin from "../components/form/FormLogin";
 import { useMedia } from "react-use";
 
-const Acceder = () => {
+const Login = () => {
   const isWide = useMedia("(max-width: 1023px)", false);
 
   return (
@@ -39,11 +39,11 @@ const Acceder = () => {
         </div>
 
         <div className="lg:w-1/2 flex justify-center items-center pt-8 lg:pt-0">
-          <FormAcceder />
+          <FormLogin />
         </div>
       </main>
     </div>
   );
 };
 
-export default Acceder;
+export default Login;

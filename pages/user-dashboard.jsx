@@ -19,7 +19,7 @@ const UserDashboard = () => {
   if (loggedUser) {
     return (
       <div className="text-2xl h-screen font-bold grid grid-cols-1 lg:grid-cols-2 items-center text-center">
-        <Link href="/create-report/selectLocation">
+        <Link href="/create-report/select-location">
           <motion.div
             initial={{ backgroundColor: "#fff", color: "black" }}
             whileHover={{
@@ -44,7 +44,7 @@ const UserDashboard = () => {
           </motion.div>
         </Link>
 
-        <Link href="/misReportes">
+        <Link href="/my-reports">
           <motion.div
             initial={{ backgroundColor: "#fff", color: "black" }}
             whileHover={{

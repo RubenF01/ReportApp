@@ -20,7 +20,7 @@ const ReportPanel = ({ info, infoPanel, setInfoPanel }) => {
           <div className="h-[30%] relative border-b-[1px] border-black">
             <img
               src={`https://maps.googleapis.com/maps/api/staticmap?center=${info.lng},${info.lat}&zoom=13&size=1500x1500&sensor=false&markers=color:red%7C${info.lng},${info.lat}&key=${process.env.GOOGLE_API_KEY}`}
-              alt={info.referencias}
+              alt={info.references}
               className="h-full w-full object-cover rounded-t-xl"
             />
             <div className="absolute inset-0 bg-black/30" />
@@ -51,7 +51,7 @@ const ReportPanel = ({ info, infoPanel, setInfoPanel }) => {
             </div>
             <div>
               <h1 className="font-bold text-xl">Referencias</h1>
-              <p className="text-lg">{info.referencias}</p>
+              <p className="text-lg">{info.references}</p>
             </div>
             <div>
               <h1 className="font-bold text-xl">Tipo</h1>

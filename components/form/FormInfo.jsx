@@ -39,15 +39,15 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
 
   const onSubmit = async (formData) => {
     try {
-      const { referencias, imagenes } = formData;
+      const { references, images } = formData;
       let imageLinks = [];
 
       const date = Date.now();
       const imageData = new FormData();
 
       // Upload images to Cloudinary
-      for (const imagen of imagenes) {
-        imageData.append("file", imagen);
+      for (const image of images) {
+        imageData.append("file", image);
         imageData.append("upload_preset", "my-uploads");
 
         const data = await fetch(process.env.IMG_UPLOAD_LINK, {
@@ -68,10 +68,10 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
       };
 
       const { data } = await axios.post(
-        "/api/reporte",
+        "/api/report",
         {
           cedula,
-          referencias,
+          references,
           imageLinks,
           lng,
           lat,
@@ -87,7 +87,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
 
       reset();
 
-      router.push("/userDashboard");
+      router.push("/user-dashboard");
     } catch (error) {
       console.error(error);
     }
@@ -106,7 +106,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
         <input
           type="text"
           className="py-2 px-3 border-b-2 border-black outline-none"
-          {...register("referencias", { required: true })}
+          {...register("references", { required: true })}
         />
         {errors.referencias && (
           <div className="text-red-700">Las referencias son requeridas</div>
@@ -119,7 +119,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
           type="file"
           multiple={true}
           className="py-2 px-3 border-[1px] border-black outline-none"
-          {...register("imagenes", { required: true })}
+          {...register("images", { required: true })}
         />
         {errors.imagenes && (
           <div className="text-red-700">Las fotos son requeridas</div>
@@ -137,7 +137,6 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
           <option value="Espacio ilegalmente ocupado">
             Espacio ilegalmente ocupado
           </option>
-          <option value="Otro">Otro</option>
         </select>
       </label>
 

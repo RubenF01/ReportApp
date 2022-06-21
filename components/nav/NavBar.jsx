@@ -38,8 +38,8 @@ const NavBar = () => {
               changeColor ? "text-white" : "text-black"
             }`}
           >
-            <h1 className="cursor-default">Hola, {loggedUser.nombre} |</h1>
-            <Link href="/userDashboard">
+            <h1 className="cursor-default">Hola, {loggedUser.firstName} |</h1>
+            <Link href="/user-dashboard">
               <a>Dashboard</a>
             </Link>
             <button type="button" onClick={logoutHandler}>
@@ -62,7 +62,7 @@ const NavBar = () => {
           </Link>
         </div>
 
-        {loggedUser && <h1>Hola, {loggedUser.nombre}</h1>}
+        {loggedUser && <h1>Hola, {loggedUser.firstName}</h1>}
 
         {loggedUser ? (
           <div onClick={() => setIsOpen(!isOpen)}>
@@ -87,7 +87,7 @@ const NavBar = () => {
               exit={{ y: 37, opacity: 0 }}
               className="bg-white absolute z-[300] left-0 bottom-[-24px] w-full flex flex-col text-center py-3 gap-y-3 border-b-[1px] border-black"
             >
-              <Link href="/userDashboard">
+              <Link href="/user-dashboard">
                 <a onClick={() => setIsOpen(false)}>Dashboard</a>
               </Link>
               <button

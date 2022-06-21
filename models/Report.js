@@ -13,11 +13,11 @@ const ReportSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  referencias: {
+  references: {
     type: String,
     required: true,
   },
-  imagenes: {
+  images: {
     type: Array,
     required: true,
   },

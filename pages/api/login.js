@@ -9,17 +9,17 @@ dbConnect();
 export default async (req, res) => {
   try {
     if (req.method === "POST") {
-      const { correo, password } = req.body;
-      const user = await User.findOne({ correo });
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
 
       if (!user) {
-        res.status(422).json({ message: "Usuario no existe" });
+        res.status(422).json({ message: "User doesn't exist" });
       }
 
       const matchPassword = await bcrypt.compare(password, user.password);
 
       if (!matchPassword) {
-        res.status(404).json({ message: "Credenciales incorrectas" });
+        res.status(404).json({ message: "Incorrect credentials" });
       } else {
         const token = await jwt.sign(
           { userId: user.id },
@@ -28,7 +28,7 @@ export default async (req, res) => {
             expiresIn: "7d",
           }
         );
-        res.status(201).json({ message: "Login exitoso", user, token });
+        res.status(201).json({ message: "Successful login", user, token });
       }
     }
   } catch (error) {

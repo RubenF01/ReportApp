@@ -8,29 +8,29 @@ dbConnect();
 export default async (req, res) => {
   try {
     if (req.method === "POST") {
-      const { nombre, apellido, correo, cedula, password, creationDate } =
+      const { firstName, lastName, email, cedula, password, creationDate } =
         req.body;
-      const user = await User.findOne({ correo });
+      const user = await User.findOne({ email });
       const userCedula = await User.findOne({ cedula });
       const isAdmin = false;
 
       if (user || userCedula) {
-        res.status(422).json({ message: "Usuario ya existe" });
+        res.status(422).json({ message: "User already exists" });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
       await new User({
-        nombre,
-        apellido,
-        correo,
+        firstName,
+        lastName,
+        email,
         cedula,
         password: hashedPassword,
         isAdmin,
         creationDate,
       }).save();
 
-      res.status(200).json({ message: "Registro exitoso" });
+      res.status(200).json({ message: "Registered successfully" });
     }
   } catch (error) {
     console.error(error);

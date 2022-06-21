@@ -9,7 +9,7 @@ import ReportPanel from "../components/report/ReportPanel";
 import BlackOverlay from "../components/layout/BlackOverlay";
 import { motion, AnimatePresence } from "framer-motion";
 
-const MisReportes = () => {
+const MyReports = () => {
   const value = useContext(GlobalContext);
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [deleteId, setDeleteId] = useState("");
@@ -21,7 +21,7 @@ const MisReportes = () => {
 
   const getReports = async () => {
     try {
-      const response = await axios.get("/api/reporte", {
+      const response = await axios.get("/api/report", {
         params: {
           cedula,
         },
@@ -35,7 +35,7 @@ const MisReportes = () => {
 
   const deleteReport = async () => {
     try {
-      await axios.delete("/api/reporte", {
+      await axios.delete("/api/report", {
         params: {
           id: deleteId,
         },
@@ -56,7 +56,7 @@ const MisReportes = () => {
       <div className="h-screen w-full flex flex-col justify-center items-center gap-y-4 relative font-poppins pt-6 overflow-x-hidden">
         <div className="w-[95%]">
           <div className="flex pb-3 pt-8 lg:py-3">
-            <Link href="/userDashboard">
+            <Link href="/user-dashboard">
               <div className="flex items-center border-[1px] border-black px-5 py-2 hover:bg-black hover:fill-white hover:text-white cursor-pointer">
                 <Arrowleft className="w-4" />
                 <p className="pl-2 font-bold">Volver</p>
@@ -133,4 +133,4 @@ const MisReportes = () => {
   }
 };
 
-export default MisReportes;
+export default MyReports;

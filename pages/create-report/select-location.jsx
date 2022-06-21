@@ -36,7 +36,7 @@ const SelectLocation = () => {
           }}
         />
         <div className="pt-5">
-          <Link href="/create-report/addInformation">
+          <Link href="/create-report/add-information">
             <a
               onClick={fetchAddress}
               className="border-2 border-black text-xl px-5 py-2 font-poppins hover:text-white hover:bg-black"

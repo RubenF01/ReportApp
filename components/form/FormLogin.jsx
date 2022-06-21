@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import ButtonLink from "../button/ButtonLink";
 import { motion } from "framer-motion";
 
-const FormAcceder = () => {
+const FormLogin = () => {
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ const FormAcceder = () => {
 
   const onSubmit = async (formData) => {
     try {
-      const { correo, password } = formData;
+      const { email, password } = formData;
 
       const config = {
         headers: {
@@ -25,9 +25,9 @@ const FormAcceder = () => {
       };
 
       const { data } = await axios.post(
-        "/api/acceder",
+        "/api/login",
         {
-          correo,
+          email,
           password,
         },
         config
@@ -38,7 +38,7 @@ const FormAcceder = () => {
 
       reset();
 
-      router.push("/userDashboard");
+      router.push("/user-dashboard");
     } catch (error) {
       console.error(error);
     }
@@ -60,9 +60,9 @@ const FormAcceder = () => {
         <input
           type="email"
           className="border-b-2 border-black py-2 px-3 outline-none"
-          {...register("correo", { required: true })}
+          {...register("email", { required: true })}
         />
-        {errors.correo && (
+        {errors.email && (
           <span className="text-red-700">El correo es requerido</span>
         )}
       </label>
@@ -92,4 +92,4 @@ const FormAcceder = () => {
   );
 };
 
-export default FormAcceder;
+export default FormLogin;

@@ -6,10 +6,10 @@ const ReportItem = ({
   report: {
     lat,
     lng,
-    referencias,
+    references,
     status,
     creationDate,
-    imagenes,
+    images,
     type,
     _id,
     sector,
@@ -51,7 +51,7 @@ const ReportItem = ({
       <div className="h-[30%] relative">
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap?center=${lng},${lat}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${lng},${lat}&key=${process.env.GOOGLE_API_KEY}`}
-          alt={referencias}
+          alt={references}
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />
@@ -64,11 +64,11 @@ const ReportItem = ({
         ssr={true}
         className="h-[45%] border-y-[1px] border-black"
       >
-        {imagenes.map((imagen, index) => (
+        {images.map((image, index) => (
           <img
             key={index}
-            src={imagen}
-            alt={referencias}
+            src={image}
+            alt={references}
             className="mx-auto w-full h-full object-contain"
           />
         ))}
@@ -85,10 +85,10 @@ const ReportItem = ({
             setInfo({
               lat,
               lng,
-              referencias,
+              references,
               status,
               creationDate,
-              imagenes,
+              images,
               type,
               _id,
               sector,

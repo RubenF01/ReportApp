@@ -56,12 +56,12 @@ export default function Home() {
           </h1>
           {loggedUser ? (
             <div className="flex flex-col space-y-5">
-              <ButtonLink title="Dashboard" link="/userDashboard" />
+              <ButtonLink title="Dashboard" link="/user-dashboard" />
             </div>
           ) : (
             <div className="flex flex-col space-y-5">
-              <ButtonLink title="Acceder" link="/acceder" />
-              <ButtonLink title="Registro" link="/registro" />
+              <ButtonLink title="Acceder" link="/login" />
+              <ButtonLink title="Registro" link="/register" />
             </div>
           )}
         </div>

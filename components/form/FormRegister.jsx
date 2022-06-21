@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import ButtonLink from "../button/ButtonLink";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
-const FormRegistro = () => {
+const FormRegister = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -14,7 +16,7 @@ const FormRegistro = () => {
   const creationDate = Date.now();
 
   const onSubmit = async (formData) => {
-    const { nombre, apellido, correo, cedula, password } = formData;
+    const { firstName, lastName, email, cedula, password } = formData;
 
     const config = {
       headers: {
@@ -23,11 +25,11 @@ const FormRegistro = () => {
     };
 
     const { data } = await axios.post(
-      "/api/registro",
+      "/api/register",
       {
-        nombre,
-        apellido,
-        correo,
+        firstName,
+        lastName,
+        email,
         cedula,
         password,
         creationDate,
@@ -36,6 +38,8 @@ const FormRegistro = () => {
     );
 
     reset();
+
+    router.push("/");
   };
 
   return (
@@ -55,7 +59,7 @@ const FormRegistro = () => {
           type="text"
           placeholder="Juan"
           className="border-b-2 border-black py-2 px-3 outline-none"
-          {...register("nombre", { required: true })}
+          {...register("firstName", { required: true })}
         />
         {errors.nombre && (
           <div className="text-red-700">El nombre es requerido</div>
@@ -68,7 +72,7 @@ const FormRegistro = () => {
           type="text"
           placeholder="Perez"
           className="border-b-2 border-black py-2 px-3 outline-none"
-          {...register("apellido", { required: true })}
+          {...register("lastName", { required: true })}
         />
         {errors.apellido && (
           <div className="text-red-700">El apellido es requerido</div>
@@ -81,9 +85,9 @@ const FormRegistro = () => {
           type="email"
           className="border-b-2 border-black py-2 px-3 outline-none"
           placeholder="mail@email.com"
-          {...register("correo", { required: true })}
+          {...register("email", { required: true })}
         />
-        {errors.correo && (
+        {errors.email && (
           <div className="text-red-700">El correo es requerido</div>
         )}
       </label>
@@ -91,7 +95,7 @@ const FormRegistro = () => {
       <label className="font-bold flex flex-col">
         Cédula
         <input
-          type="number"
+          type="text"
           className="border-b-2 border-black py-2 px-3 outline-none"
           placeholder="001-0000000-0"
           {...register("cedula", {
@@ -135,4 +139,4 @@ const FormRegistro = () => {
   );
 };
 
-export default FormRegistro;
+export default FormRegister;

@@ -9,7 +9,7 @@ export default async (req, res) => {
     if (req.method === "POST") {
       const {
         cedula,
-        referencias,
+        references,
         imageLinks,
         lng,
         lat,
@@ -25,8 +25,8 @@ export default async (req, res) => {
         createdBy: cedula,
         lat,
         lng,
-        referencias,
-        imagenes: imageLinks,
+        references,
+        images: imageLinks,
         status: defaultStatus,
         creationDate: date,
         type,
@@ -35,7 +35,7 @@ export default async (req, res) => {
         province,
       }).save();
 
-      res.status(200).json({ message: "Reporte creado" });
+      res.status(200).json({ message: "Report created" });
     }
 
     if (req.method === "GET") {
@@ -49,7 +49,7 @@ export default async (req, res) => {
       const { id } = req.query;
       await Report.findByIdAndDelete(id);
 
-      res.status(200).json({ message: "Reporte eliminado" });
+      res.status(200).json({ message: "Deleted report" });
     }
   } catch (error) {
     console.error(error);

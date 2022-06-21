@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import FormRegistro from "../components/form/FormRegistro";
+import FormRegister from "../components/form/FormRegister";
 import { useMedia } from "react-use";
 
 const Registro = () => {
@@ -38,7 +38,7 @@ const Registro = () => {
           </div>
         </div>
         <div className="lg:w-1/2 flex justify-center items-center">
-          <FormRegistro />
+          <FormRegister />
         </div>
       </main>
     </div>
