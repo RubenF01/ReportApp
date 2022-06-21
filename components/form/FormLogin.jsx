@@ -4,8 +4,10 @@ import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import ButtonLink from "../button/ButtonLink";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const FormLogin = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -40,7 +42,7 @@ const FormLogin = () => {
 
       router.push("/user-dashboard");
     } catch (error) {
-      console.error(error);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -88,6 +90,9 @@ const FormLogin = () => {
         </button>
         <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
       </div>
+      {errorMessage && (
+        <div className="text-red-700 text-center">{errorMessage}</div>
+      )}
     </motion.form>
   );
 };

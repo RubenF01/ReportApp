@@ -13,13 +13,13 @@ export default async (req, res) => {
       const user = await User.findOne({ email });
 
       if (!user) {
-        res.status(422).json({ message: "User doesn't exist" });
+        res.status(422).json({ message: "Usuario no existe" });
       }
 
       const matchPassword = await bcrypt.compare(password, user.password);
 
       if (!matchPassword) {
-        res.status(404).json({ message: "Incorrect credentials" });
+        res.status(404).json({ message: "Credenciales incorrectas" });
       } else {
         const token = await jwt.sign(
           { userId: user.id },

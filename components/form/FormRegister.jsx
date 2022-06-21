@@ -3,8 +3,10 @@ import axios from "axios";
 import ButtonLink from "../button/ButtonLink";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const FormRegister = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   const {
     register,
@@ -16,30 +18,34 @@ const FormRegister = () => {
   const creationDate = Date.now();
 
   const onSubmit = async (formData) => {
-    const { firstName, lastName, email, cedula, password } = formData;
+    try {
+      const { firstName, lastName, email, cedula, password } = formData;
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-    const { data } = await axios.post(
-      "/api/register",
-      {
-        firstName,
-        lastName,
-        email,
-        cedula,
-        password,
-        creationDate,
-      },
-      config
-    );
+      const { data } = await axios.post(
+        "/api/register",
+        {
+          firstName,
+          lastName,
+          email,
+          cedula,
+          password,
+          creationDate,
+        },
+        config
+      );
 
-    reset();
+      reset();
 
-    router.push("/");
+      router.push("/");
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+    }
   };
 
   return (
@@ -135,6 +141,9 @@ const FormRegister = () => {
         </button>
         <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
       </div>
+      {errorMessage && (
+        <div className="text-red-700 text-center">{errorMessage}</div>
+      )}
     </motion.form>
   );
 };

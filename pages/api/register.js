@@ -15,7 +15,7 @@ export default async (req, res) => {
       const isAdmin = false;
 
       if (user || userCedula) {
-        res.status(422).json({ message: "User already exists" });
+        res.status(422).json({ message: "Usuario ya existe" });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
