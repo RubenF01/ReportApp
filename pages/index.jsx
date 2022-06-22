@@ -45,7 +45,7 @@ export default function Home() {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
       </Head>
 
-      <main className="flex flex-col lg:flex-row font-poppins min-h-screen">
+      <main className="flex flex-col lg:flex-row font-poppins min-h-screen overflow-x-hidden">
         <div className="w-full lg:w-1/2 relative">
           <img
             className="h-[350px] sm:h-full object-cover"
