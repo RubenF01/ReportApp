@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ButtonLink from "../button/ButtonLink";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FormRegister = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [endAnimation, setEndAnimation] = useState(false);
+  const control = useAnimation();
   const router = useRouter();
   const {
     register,
@@ -42,16 +44,40 @@ const FormRegister = () => {
 
       reset();
 
-      router.push("/");
+      setEndAnimation(true);
+
+      control.start({
+        x: "130%",
+        transition: { duration: 0.6 },
+      });
+
+      setTimeout(() => {
+        router.push("/");
+      }, 600);
     } catch (error) {
       setErrorMessage(error.response.data.message);
     }
   };
 
+  const clickHandler = (link) => {
+    setEndAnimation(true);
+    control.start({
+      x: "130%",
+      transition: { duration: 0.6 },
+    });
+    setTimeout(() => {
+      router.push(link);
+    }, 600);
+  };
+
+  useEffect(() => {
+    control.start({ x: 0 });
+  }, [control]);
+
   return (
     <motion.form
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
+      initial={endAnimation ? { x: 0 } : { x: "100%" }}
+      animate={control}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white flex flex-col w-[95%] sm:w-[80%] gap-y-4 px-4 md:px-10 py-5"
@@ -139,7 +165,11 @@ const FormRegister = () => {
         >
           Registrarse
         </button>
-        <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
+        <ButtonLink
+          title="Cancelar"
+          classes="hover:!bg-red-700"
+          clickEvent={() => clickHandler("/")}
+        />
       </div>
       {errorMessage && (
         <div className="text-red-700 text-center">{errorMessage}</div>

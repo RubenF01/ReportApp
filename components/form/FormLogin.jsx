@@ -3,11 +3,13 @@ import axios from "axios";
 import cookie from "js-cookie";
 import { useRouter } from "next/router";
 import ButtonLink from "../button/ButtonLink";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const FormLogin = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [endAnimation, setEndAnimation] = useState(false);
+  const control = useAnimation();
   const {
     register,
     handleSubmit,
@@ -40,16 +42,39 @@ const FormLogin = () => {
 
       reset();
 
-      router.push("/user-dashboard");
+      setEndAnimation(true);
+      control.start({
+        x: "130%",
+        transition: { duration: 0.6 },
+      });
+
+      setTimeout(() => {
+        router.push("/user-dashboard");
+      }, 600);
     } catch (error) {
       setErrorMessage(error.response.data.message);
     }
   };
 
+  const clickHandler = (link) => {
+    setEndAnimation(true);
+    control.start({
+      x: "130%",
+      transition: { duration: 0.6 },
+    });
+    setTimeout(() => {
+      router.push(link);
+    }, 600);
+  };
+
+  useEffect(() => {
+    control.start({ x: 0 });
+  }, [control]);
+
   return (
     <motion.form
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
+      initial={endAnimation ? { x: 0 } : { x: "100%" }}
+      animate={control}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
       className="bg-white w-[95%] sm:w-[80%] flex flex-col gap-y-10 px-4 md:px-10 py-5"
@@ -88,7 +113,11 @@ const FormLogin = () => {
         >
           Acceder
         </button>
-        <ButtonLink title="Cancelar" link="/" classes="hover:!bg-red-700" />
+        <ButtonLink
+          title="Cancelar"
+          classes="hover:!bg-red-700"
+          clickEvent={() => clickHandler("/")}
+        />
       </div>
       {errorMessage && (
         <div className="text-red-700 text-center">{errorMessage}</div>

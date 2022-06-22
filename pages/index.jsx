@@ -2,13 +2,14 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { motion, useAnimation } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const value = useContext(GlobalContext);
+  const [endAnimation, setEndAnimation] = useState(false);
   const { loggedUser } = value;
   const control = useAnimation();
   const router = useRouter();
@@ -23,6 +24,10 @@ export default function Home() {
       router.push(link);
     }, 500);
   };
+
+  useEffect(() => {
+    control.start({ x: 0 });
+  }, [control]);
 
   return (
     <div>
@@ -66,8 +71,9 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial={{ x: 0 }}
+          initial={endAnimation ? { x: 0 } : { x: "100%" }}
           animate={control}
+          transition={{ duration: 0.6 }}
           className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-10"
         >
           {/* Agregar animacion despues de presinoar boton, todos los botones para la derecha */}
