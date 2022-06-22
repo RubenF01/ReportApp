@@ -4,10 +4,25 @@ import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
 import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
+import { motion, useAnimation } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const value = useContext(GlobalContext);
   const { loggedUser } = value;
+  const control = useAnimation();
+  const router = useRouter();
+
+  const handleClick = (link) => {
+    control.start({
+      x: "100%",
+      transition: { duration: 0.5 },
+    });
+
+    setTimeout(() => {
+      router.push(link);
+    }, 500);
+  };
 
   return (
     <div>
@@ -50,7 +65,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-10">
+        <motion.div
+          initial={{ x: 0 }}
+          animate={control}
+          className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-10"
+        >
+          {/* Agregar animacion despues de presinoar boton, todos los botones para la derecha */}
           <h1 className="font-bold text-4xl md:text-7xl w-[23rem] md:w-[30rem] text-center cursor-default pt-10 lg:pt-0">
             Bienvenido a ReportApp
           </h1>
@@ -60,11 +80,17 @@ export default function Home() {
             </div>
           ) : (
             <div className="flex flex-col space-y-5">
-              <ButtonLink title="Acceder" link="/login" />
-              <ButtonLink title="Registro" link="/register" />
+              <ButtonLink
+                title="Acceder"
+                clickEvent={() => handleClick("/login")}
+              />
+              <ButtonLink
+                title="Registro"
+                clickEvent={() => handleClick("/register")}
+              />
             </div>
           )}
-        </div>
+        </motion.div>
       </main>
     </div>
   );
