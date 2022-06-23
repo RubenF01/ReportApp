@@ -3,8 +3,13 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import GlobalContext from "../../context/GlobalContext";
+import Spinner from "../../components/spinner/Spinner";
 
 const FormInfo = ({ loggedUser, lng, lat, address }) => {
+  const value = useContext(GlobalContext);
+  const { loading, setLoading } = value;
   const {
     register,
     handleSubmit,
@@ -45,6 +50,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
       const date = Date.now();
       const imageData = new FormData();
 
+      setLoading(true);
       // Upload images to Cloudinary
       for (const image of images) {
         imageData.append("file", image);
@@ -84,6 +90,7 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
         },
         config
       );
+      setLoading(false);
 
       reset();
 
@@ -144,6 +151,12 @@ const FormInfo = ({ loggedUser, lng, lat, address }) => {
         <h1 className="font-bold">Dirección seleccionada</h1>
         <p>{fullAddress}</p>
       </div>
+
+      {loading && (
+        <div className="w-full flex justify-center">
+          <Spinner />
+        </div>
+      )}
 
       <div className="flex justify-center">
         <button

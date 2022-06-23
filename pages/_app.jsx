@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [reports, setReports] = useState([]);
   const [address, setAddress] = useState([]);
   const [changeColor, setChangeColor] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -39,6 +40,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           setAddress,
           changeColor,
           setChangeColor,
+          loading,
+          setLoading,
         }}
       >
         <Layout>

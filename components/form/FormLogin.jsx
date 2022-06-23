@@ -5,10 +5,14 @@ import { useRouter } from "next/router";
 import ButtonLink from "../button/ButtonLink";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
+import Spinner from "../../components/spinner/Spinner";
+import { useContext } from "react";
+import GlobalContext from "../../context/GlobalContext";
 
 const FormLogin = () => {
+  const value = useContext(GlobalContext);
+  const { loading, setLoading } = value;
   const [errorMessage, setErrorMessage] = useState("");
-  const [endAnimation, setEndAnimation] = useState(false);
   const control = useAnimation();
   const {
     register,
@@ -22,6 +26,7 @@ const FormLogin = () => {
     try {
       const { email, password } = formData;
 
+      setLoading(true);
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -36,13 +41,13 @@ const FormLogin = () => {
         },
         config
       );
+      setLoading(false);
 
       cookie.set("token", data?.token);
       cookie.set("user", JSON.stringify(data?.user));
 
       reset();
 
-      setEndAnimation(true);
       control.start({
         x: "130%",
         transition: { duration: 0.6 },
@@ -57,7 +62,6 @@ const FormLogin = () => {
   };
 
   const clickHandler = (link) => {
-    setEndAnimation(true);
     control.start({
       x: "130%",
       transition: { duration: 0.6 },
@@ -73,7 +77,7 @@ const FormLogin = () => {
 
   return (
     <motion.form
-      initial={endAnimation ? { x: 0 } : { x: "100%" }}
+      initial={{ x: "120%" }}
       animate={control}
       transition={{ duration: 0.6 }}
       onSubmit={handleSubmit(onSubmit)}
@@ -105,6 +109,12 @@ const FormLogin = () => {
           <span className="text-red-700">La contraseña es requerida</span>
         )}
       </label>
+
+      {loading && (
+        <div className="w-full flex justify-center">
+          <Spinner />
+        </div>
+      )}
 
       <div className="flex justify-center space-x-5 sm:space-x-10">
         <button

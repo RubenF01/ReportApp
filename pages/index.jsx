@@ -2,14 +2,13 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import ButtonLink from "../components/button/ButtonLink";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { motion, useAnimation } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const value = useContext(GlobalContext);
-  const [endAnimation, setEndAnimation] = useState(false);
   const { loggedUser } = value;
   const control = useAnimation();
   const router = useRouter();
@@ -71,7 +70,7 @@ export default function Home() {
         </div>
 
         <motion.div
-          initial={endAnimation ? { x: 0 } : { x: "100%" }}
+          initial={{ x: "100%" }}
           animate={control}
           transition={{ duration: 0.6 }}
           className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-10"
