@@ -80,8 +80,17 @@ export default function Home() {
             Bienvenido a ReportApp
           </h1>
           {loggedUser ? (
-            <div className="flex flex-col space-y-5">
-              <ButtonLink title="Dashboard" link="/user-dashboard" />
+            <div className="flex flex-col items-center space-y-5">
+              {loggedUser?.isAdmin && (
+                <ButtonLink
+                  title="Admin Dashboard"
+                  clickEvent={() => handleClick("/admin-dashboard")}
+                />
+              )}
+              <ButtonLink
+                title="Dashboard"
+                clickEvent={() => handleClick("/user-dashboard")}
+              />
             </div>
           ) : (
             <div className="flex flex-col space-y-5">

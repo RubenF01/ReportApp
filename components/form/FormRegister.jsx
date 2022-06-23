@@ -59,6 +59,7 @@ const FormRegister = () => {
         router.push("/");
       }, 600);
     } catch (error) {
+      setLoading(false);
       setErrorMessage(error.response.data.message);
     }
   };

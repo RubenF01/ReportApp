@@ -57,6 +57,7 @@ const FormLogin = () => {
         router.push("/user-dashboard");
       }, 600);
     } catch (error) {
+      setLoading(false);
       setErrorMessage(error.response.data.message);
     }
   };
