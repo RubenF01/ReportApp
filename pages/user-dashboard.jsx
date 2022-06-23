@@ -80,7 +80,7 @@ const UserDashboard = () => {
   } else {
     return (
       <div className="flex w-full justify-center items-center h-screen">
-        <h1 className="text-4xl font-bold font-poppins">
+        <h1 className="text-4xl font-bold font-poppins text-center">
           ¡USUARIO NO AUTORIZADO!
         </h1>
       </div>

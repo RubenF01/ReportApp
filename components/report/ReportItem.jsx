@@ -16,7 +16,6 @@ const ReportItem = ({
     province,
     fullAddress,
   },
-  getReports,
   setDeleteMessage,
   setDeleteId,
   setInfo,

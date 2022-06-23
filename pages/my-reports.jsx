@@ -19,20 +19,6 @@ const MyReports = () => {
 
   const cedula = loggedUser?.cedula;
 
-  const getReports = async () => {
-    try {
-      const response = await axios.get("/api/report", {
-        params: {
-          cedula,
-        },
-      });
-
-      setReports(response.data?.reports);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const deleteReport = async () => {
     try {
       await axios.delete("/api/report", {
@@ -48,6 +34,19 @@ const MyReports = () => {
   };
 
   useEffect(() => {
+    const getReports = async () => {
+      try {
+        const response = await axios.get("/api/report", {
+          params: {
+            cedula,
+          },
+        });
+
+        setReports(response.data?.reports);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getReports();
   }, [cedula]);
 
@@ -71,7 +70,6 @@ const MyReports = () => {
               <ReportItem
                 key={index}
                 report={report}
-                getReports={getReports}
                 setDeleteMessage={setDeleteMessage}
                 setDeleteId={setDeleteId}
                 setInfo={setInfo}
@@ -125,7 +123,7 @@ const MyReports = () => {
   } else {
     return (
       <div className="flex w-full justify-center items-center h-screen">
-        <h1 className="text-4xl font-bold font-poppins">
+        <h1 className="text-4xl font-bold font-poppins text-center">
           ¡USUARIO NO AUTORIZADO!
         </h1>
       </div>
