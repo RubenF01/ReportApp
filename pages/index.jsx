@@ -75,7 +75,6 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-10"
         >
-          {/* Agregar animacion despues de presinoar boton, todos los botones para la derecha */}
           <h1 className="font-bold text-4xl md:text-7xl w-[23rem] md:w-[30rem] text-center cursor-default pt-10 lg:pt-0">
             Bienvenido a ReportApp
           </h1>

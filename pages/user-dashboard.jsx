@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Triangle from "../public/triangle.svg";
 import Clipboard from "../public/clipboard.svg";
 import { useContext, useState } from "react";
@@ -18,63 +19,74 @@ const UserDashboard = () => {
 
   if (loggedUser) {
     return (
-      <div className="text-2xl h-screen font-bold grid grid-cols-1 lg:grid-cols-2 items-center text-center">
-        <Link href="/create-report/select-location">
-          <motion.div
-            initial={{ backgroundColor: "#fff", color: "black" }}
-            whileHover={{
-              backgroundColor: "rgb(0 0 0 / 0.8)",
-              color: "white",
-            }}
-            transition={{ duration: 0.4 }}
-            onMouseEnter={() => setIsCreateHover(true)}
-            onMouseLeave={() => setIsCreateHover(false)}
-            className="flex w-full h-full justify-center cursor-pointer items-center border-b-[1px] lg:border-b-0 lg:border-r-[1px] border-black"
-          >
-            <motion.figure
-              initial={variants.start}
-              animate={isCreateHover ? "end" : "start"}
-              transition={{ duration: 0.4 }}
-              variants={variants}
-              className="w-[300px] lg:w-[550px]"
-            >
-              <Triangle />
-              <figcaption>CREAR REPORTE</figcaption>
-            </motion.figure>
-          </motion.div>
-        </Link>
+      <div>
+        <Head>
+          <title>User Dashboard</title>
+          <meta
+            name="description"
+            content="Created by Ruben Frias & Melvin Guerra"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-        <Link href="/my-reports">
-          <motion.div
-            initial={{ backgroundColor: "#fff", color: "black" }}
-            whileHover={{
-              backgroundColor: "rgb(0 0 0 / 0.8)",
-              color: "white",
-            }}
-            transition={{ duration: 0.4 }}
-            onMouseEnter={() => {
-              setChangeColor(true);
-              setIsReportsHover(true);
-            }}
-            onMouseLeave={() => {
-              setChangeColor(false);
-              setIsReportsHover(false);
-            }}
-            onClick={() => setChangeColor(false)}
-            className="flex w-full h-full cursor-pointer justify-center items-center border-t-[1px] lg:border-t-0 lg:border-l-[1px] border-black"
-          >
-            <motion.figure
-              initial={variants.start}
-              animate={isReportsHover ? "end" : "start"}
+        <main className="text-2xl h-screen font-bold grid grid-cols-1 lg:grid-cols-2 items-center text-center">
+          <Link href="/create-report/select-location">
+            <motion.div
+              initial={{ backgroundColor: "#fff", color: "black" }}
+              whileHover={{
+                backgroundColor: "rgb(0 0 0 / 0.8)",
+                color: "white",
+              }}
               transition={{ duration: 0.4 }}
-              variants={variants}
-              className="w-[15rem] lg:w-[23rem]"
+              onMouseEnter={() => setIsCreateHover(true)}
+              onMouseLeave={() => setIsCreateHover(false)}
+              className="flex w-full h-full justify-center cursor-pointer items-center border-b-[1px] lg:border-b-0 lg:border-r-[1px] border-black"
             >
-              <Clipboard className="mt-[-25px]" />
-              <figcaption className="mt-[30px]">MIS REPORTES</figcaption>
-            </motion.figure>
-          </motion.div>
-        </Link>
+              <motion.figure
+                initial={variants.start}
+                animate={isCreateHover ? "end" : "start"}
+                transition={{ duration: 0.4 }}
+                variants={variants}
+                className="w-[300px] lg:w-[550px]"
+              >
+                <Triangle />
+                <figcaption>CREAR REPORTE</figcaption>
+              </motion.figure>
+            </motion.div>
+          </Link>
+
+          <Link href="/my-reports">
+            <motion.div
+              initial={{ backgroundColor: "#fff", color: "black" }}
+              whileHover={{
+                backgroundColor: "rgb(0 0 0 / 0.8)",
+                color: "white",
+              }}
+              transition={{ duration: 0.4 }}
+              onMouseEnter={() => {
+                setChangeColor(true);
+                setIsReportsHover(true);
+              }}
+              onMouseLeave={() => {
+                setChangeColor(false);
+                setIsReportsHover(false);
+              }}
+              onClick={() => setChangeColor(false)}
+              className="flex w-full h-full cursor-pointer justify-center items-center border-t-[1px] lg:border-t-0 lg:border-l-[1px] border-black"
+            >
+              <motion.figure
+                initial={variants.start}
+                animate={isReportsHover ? "end" : "start"}
+                transition={{ duration: 0.4 }}
+                variants={variants}
+                className="w-[15rem] lg:w-[23rem]"
+              >
+                <Clipboard className="mt-[-25px]" />
+                <figcaption className="mt-[30px]">MIS REPORTES</figcaption>
+              </motion.figure>
+            </motion.div>
+          </Link>
+        </main>
       </div>
     );
   } else {
