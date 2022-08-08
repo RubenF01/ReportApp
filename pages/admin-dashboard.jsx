@@ -7,6 +7,7 @@ import BarChart from "../components/chart/BarChart";
 import DoughnutChart from "../components/chart/DoughnutChart";
 import PieChart from "../components/chart/PieChart";
 import UserBanner from "../components/user-banner/UserBanner";
+import BlackOverlay from "../components/layout/BlackOverlay";
 
 const GeneralMap = dynamic(() => import("../components/map/GeneralMap"), {
   ssr: false,
