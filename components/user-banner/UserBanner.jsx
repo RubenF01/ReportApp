@@ -1,13 +1,26 @@
 import axios from "axios";
 
-const UserBanner = ({ firstName, lastName, isAdmin, cedula, creationDate }) => {
+const UserBanner = ({
+  _id,
+  firstName,
+  lastName,
+  isAdmin,
+  cedula,
+  creationDate,
+  setIsOpen,
+  setUserToDelete,
+}) => {
   const date = new Date(creationDate);
 
   const updateType = async (e) => {
-    await axios.patch("/api/updateUserType", {
-      cedula,
-      userType: e.target.value,
-    });
+    try {
+      await axios.patch("/api/updateUserType", {
+        cedula,
+        userType: e.target.value,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -36,6 +49,10 @@ const UserBanner = ({ firstName, lastName, isAdmin, cedula, creationDate }) => {
         <button
           className="text-white bg-red-500 border-[1px] border-black px-2"
           type="button"
+          onClick={() => {
+            setIsOpen(true);
+            setUserToDelete(_id);
+          }}
         >
           ELIMINAR
         </button>
