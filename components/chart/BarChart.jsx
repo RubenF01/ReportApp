@@ -110,7 +110,6 @@ const BarChart = ({ allReports }) => {
     plugins: {
       legend: false,
       title: {
-        text: "Reportes por mes",
         display: true,
         font: {
           size: 18,
@@ -122,7 +121,7 @@ const BarChart = ({ allReports }) => {
         display: true,
       },
       yAxis: {
-        max: 10,
+        max: 100,
       },
     },
     elements: {

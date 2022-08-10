@@ -24,7 +24,7 @@ const UserBanner = ({
   };
 
   return (
-    <div className="w-full h-10 border-[1px] border-black flex justify-between items-center px-3 bg-slate-500">
+    <div className="w-full h-10 border-[1px] border-black flex justify-between items-center px-3 bg-gray-200 rounded">
       <h1 className="font-bold cursor-default">
         {firstName} {lastName}
       </h1>
@@ -32,7 +32,7 @@ const UserBanner = ({
         <p className="cursor-default">{cedula}</p>
         <p className="cursor-default">{date.toLocaleDateString("es-DO")}</p>
         <select
-          className="border-[1px] border-black px-2"
+          className="border-[1px] border-black px-2 outline-none"
           onChange={updateType}
         >
           {isAdmin ? (
