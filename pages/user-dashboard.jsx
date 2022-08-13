@@ -29,7 +29,7 @@ const UserDashboard = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main className="text-2xl h-screen font-bold grid grid-cols-1 lg:grid-cols-2 items-center text-center">
+        <main className="relative grid items-center h-screen grid-cols-1 text-2xl font-bold text-center lg:grid-cols-2">
           <Link href="/create-report/select-location">
             <motion.div
               initial={{ backgroundColor: "#fff", color: "black" }}
@@ -91,8 +91,8 @@ const UserDashboard = () => {
     );
   } else {
     return (
-      <div className="flex w-full justify-center items-center h-screen">
-        <h1 className="text-4xl font-bold font-poppins text-center">
+      <div className="flex items-center justify-center w-full h-screen">
+        <h1 className="text-4xl font-bold text-center font-poppins">
           ¡USUARIO NO AUTORIZADO!
         </h1>
       </div>

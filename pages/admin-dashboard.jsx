@@ -21,6 +21,7 @@ const AdminDashboard = () => {
   const [allReports, setAllReports] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [filterOption, setFilterOption] = useState("firstName");
+  const [filterOptionReport, setFilterOptionReport] = useState("");
   const [foundUsers, setFoundUsers] = useState([]);
   const [foundReports, setFoundReports] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,43 @@ const AdminDashboard = () => {
   const { loggedUser } = value;
 
   const filterSelect = (e) => setFilterOption(e.target.value);
+  const filterSelectReports = (e) => setFilterOptionReport(e.target.value);
+
+  const filterAdvanced = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword === "true") keyword = true;
+    if (keyword === "false") keyword = false;
+
+    if (filterOptionReport === "status" && keyword !== "") {
+      const results = allReports.filter((report) => report.status === keyword);
+      setFoundReports(results);
+    }
+
+    if (filterOptionReport === "type" && keyword !== "") {
+      const results = allReports.filter((report) => report.type === keyword);
+      setFoundReports(results);
+    }
+
+    if (filterOptionReport === "sector" && keyword !== "") {
+      const results = allReports.filter((report) => report.sector === keyword);
+      setFoundReports(results);
+    }
+
+    if (filterOptionReport === "province" && keyword !== "") {
+      const results = allReports.filter(
+        (report) => report.province === keyword
+      );
+      setFoundReports(results);
+    }
+
+    if (filterOptionReport === "cedula" && keyword !== "") {
+      const results = allReports.filter(
+        (report) => report.createdBy === keyword
+      );
+      setFoundReports(results);
+    }
+  };
 
   const deleteUser = async () => {
     try {
@@ -68,15 +106,11 @@ const AdminDashboard = () => {
     }
   };
 
-  const filterReports = (e) => {
-    const keyword = e.target.value;
-  };
-
   useEffect(() => {
     const getReports = async () => {
       try {
-        const response = await axios.get("/api/allreports");
-        const responseUsers = await axios.get("/api/allusers");
+        const response = await axios.get("/api/allReports");
+        const responseUsers = await axios.get("/api/allUsers");
         setAllReports(response.data?.allReports);
         setAllUsers(responseUsers.data?.allUsers);
         setFoundUsers(responseUsers.data?.allUsers);
@@ -129,7 +163,9 @@ const AdminDashboard = () => {
           </div>
 
           <div className="flex items-center mx-auto mb-3 space-x-3 mt-36 max-w-7xl">
-            <h1 className="text-2xl font-bold uppercase">Usuarios</h1>
+            <h1 className="text-2xl font-bold uppercase cursor-default">
+              Usuarios
+            </h1>
             <div className="border-[1px] border-black rounded-lg">
               <input
                 placeholder="Buscar..."
@@ -165,8 +201,96 @@ const AdminDashboard = () => {
             ))}
           </div>
 
-          <div className="mx-auto mb-3 mt-28 max-w-7xl">
-            <h1 className="text-2xl font-bold uppercase">REPORTES</h1>
+          <div className="flex items-center mx-auto mb-3 space-x-3 mt-28 max-w-7xl">
+            <h1 className="text-2xl font-bold uppercase cursor-default">
+              REPORTES
+            </h1>
+            <select
+              className="border-[1px] border-black"
+              onChange={filterSelectReports}
+            >
+              <option>Seleccionar filtro</option>
+              <option value="status">Estatus</option>
+              <option value="type">Tipo</option>
+              <option value="sector">Sector</option>
+              <option value="province">Provincia</option>
+              <option value="cedula">Usuario</option>
+            </select>
+
+            {filterOptionReport === "status" ? (
+              <select
+                className="border-[1px] border-black "
+                onChange={filterAdvanced}
+              >
+                <option></option>
+                <option value="true">Reparado</option>
+                <option value="false">Sin Reparar</option>
+              </select>
+            ) : null}
+
+            {filterOptionReport === "type" ? (
+              <select
+                className="border-[1px] border-black"
+                onChange={filterAdvanced}
+              >
+                <option></option>
+                <option value="Bache">Bache</option>
+                <option value="Cableado en el suelo">
+                  Cableado en el suelo
+                </option>
+                <option value="Espacio ilegalmente ocupado">
+                  Espacio ilegalmente ocupado
+                </option>
+              </select>
+            ) : null}
+
+            {filterOptionReport === "sector" ? (
+              <select
+                className="border-[1px] border-black"
+                onChange={filterAdvanced}
+              >
+                <option></option>
+                {[...new Set(allReports.map((report) => report.sector))].map(
+                  (sector, index) => (
+                    <option value={sector} key={index}>
+                      {sector}
+                    </option>
+                  )
+                )}
+                +
+              </select>
+            ) : null}
+
+            {filterOptionReport === "province" ? (
+              <select
+                className="border-[1px] border-black"
+                onChange={filterAdvanced}
+              >
+                <option></option>
+                {[...new Set(allReports.map((report) => report.province))].map(
+                  (province, index) => (
+                    <option value={province} key={index}>
+                      {province}
+                    </option>
+                  )
+                )}
+              </select>
+            ) : null}
+
+            {filterOptionReport === "cedula" ? (
+              <input
+                placeholder="Buscar..."
+                className="border-[1px] border-black px-3"
+                onChange={filterAdvanced}
+              />
+            ) : null}
+
+            <div>
+              <h1 className="font-bold">
+                Resultados:{" "}
+                <span className="font-normal">{foundReports.length}</span>
+              </h1>
+            </div>
           </div>
           <div className="flex flex-col mx-auto border-[1px] border-black h-[800px] max-w-7xl rounded overflow-y-auto space-y-3 p-3">
             {foundReports.map((report, index) => (
