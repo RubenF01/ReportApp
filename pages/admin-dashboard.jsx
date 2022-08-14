@@ -109,8 +109,8 @@ const AdminDashboard = () => {
   useEffect(() => {
     const getReports = async () => {
       try {
-        const response = await axios.get("/api/allReports");
-        const responseUsers = await axios.get("/api/allUsers");
+        const response = await axios.get("/api/allreports");
+        const responseUsers = await axios.get("/api/allusers");
         setAllReports(response.data?.allReports);
         setAllUsers(responseUsers.data?.allUsers);
         setFoundUsers(responseUsers.data?.allUsers);
