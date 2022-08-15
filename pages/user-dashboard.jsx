@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Chat from "../components/chat/Chat";
 
 const UserDashboard = () => {
   const value = useContext(GlobalContext);
@@ -86,6 +87,7 @@ const UserDashboard = () => {
               </motion.figure>
             </motion.div>
           </Link>
+          <Chat />
         </main>
       </div>
     );
